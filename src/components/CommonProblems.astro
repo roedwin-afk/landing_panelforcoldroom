@@ -1,0 +1,92 @@
+---
+const problems = [
+  {
+    icon: "🌡️",
+    title: "Temperature Loss & Energy Waste",
+    text:
+      "Poor insulation in cold rooms can increase energy consumption by up to 40% and compromise product preservation.",
+  },
+  {
+    icon: "⚠️",
+    title: "Regulatory Compliance Risks",
+    text:
+      "Sanitary regulations require certified materials. Using the wrong panels can lead to fines or operational shutdowns.",
+  },
+  {
+    icon: "🔧",
+    title: "Slow & Costly Installations",
+    text:
+      "Traditional systems take longer to install, require more labor, and increase long-term maintenance costs.",
+  },
+];
+---
+
+<section class="problems fade-in" id="problems">
+  <div class="problems__container">
+    {problems.map((p) => (
+      <div class="problems__card">
+        <span class="problems__icon">{p.icon}</span>
+        <h3 class="problems__title">{p.title}</h3>
+        <p class="problems__text">{p.text}</p>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .problems {
+    padding: 4rem 2rem;
+    background-color: #F8F9FA;
+  }
+
+  .problems__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .problems__card {
+    background: var(--color-white);
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .problems__icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .problems__title {
+    color: var(--color-primary);
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  .problems__text {
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (max-width: 768px) {
+  .problems__container {
+    grid-template-columns: 1fr;
+  }
+}
+</style>

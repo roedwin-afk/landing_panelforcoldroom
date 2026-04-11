@@ -1,0 +1,128 @@
+---
+import { Image } from "astro:assets";
+import polyurethanePanels from '../assets/polyurethane-insulated-panels.webp';
+
+const features = [
+  "Thermal conductivity from 0.022 W/mK",
+  "Available in thicknesses from 60 mm to 200 mm",
+  "Metal coating suitable for humid environments and industrial washdown areas",
+  "Complies with TIF, FDA, and HACCP standards",
+  "Fast installation with tongue-and-groove joint system",
+];
+---
+
+<section class="solution fade-in" id="solution">
+  <div class="solution__container">
+    <div class="solution__image">
+      <Image
+        src={polyurethanePanels}
+        alt="Polyurethane insulated panel for cold room"
+        width={600}
+        height={400}
+        format="webp"
+        quality={80}
+      />
+    </div>
+
+    <div class="solution__content">
+      <h2 class="solution__title">
+        Polyurethane Cold Room Panels Engineered for Industrial Performance
+      </h2>
+
+      <p class="solution__text">
+        Our cold room panels are manufactured with a high-density polyurethane core
+        (PUR/PIR), metal facing, and airtight joints to deliver the thermal sealing
+        required for food processing, pharmaceutical, and logistics facilities.
+      </p>
+
+      <ul class="solution__list">
+        {
+          features.map((feature) => (
+            <li class="solution__item">
+              <span class="solution__check">✓</span>
+              {feature}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .solution {
+    padding: 5rem 2rem;
+    background-color: var(--color-white);
+  }
+
+  .solution__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .solution__image img {
+    border-radius: 8px;
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+  }
+
+  .solution__title {
+    color: var(--color-primary);
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 1.25rem;
+  }
+
+  .solution__text {
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 1.75rem;
+  }
+
+  .solution__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .solution__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 0.95rem;
+    color: var(--color-text);
+    line-height: 1.5;
+  }
+
+  .solution__check {
+    color: var(--color-accent);
+    font-weight: 700;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (max-width: 768px) {
+  .solution__container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+</style>

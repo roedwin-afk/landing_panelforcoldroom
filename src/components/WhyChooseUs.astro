@@ -1,0 +1,117 @@
+---
+const stats = [
+  {
+    icon: "🕐",
+    number: "+10",
+    text: "Years of experience in industrial insulation solutions",
+  },
+  {
+    icon: "🏗️",
+    number: "+350",
+    text: "Cold room projects installed across Central America",
+  },
+  {
+    icon: "💬",
+    number: "Expert Support",
+    text: "We help you choose the right cold room panels for your project",
+  },
+  {
+    icon: "🏅",
+    number: "Certified Quality",
+    text: "International standards in materials and manufacturing processes",
+  },
+];
+---
+
+<section class="why-choose fade-in" id="why-choose">
+  <div class="why-choose__container">
+    <h2 class="why-choose__title">Why Choose Us</h2>
+
+    <div class="why-choose__grid">
+      {
+        stats.map((s) => (
+          <div class="why-choose__card">
+            <span class="why-choose__icon">{s.icon}</span>
+            <span class="why-choose__number">{s.number}</span>
+            <p class="why-choose__text">{s.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .why-choose {
+    padding: 5rem 2rem;
+    background-color: var(--color-white);
+  }
+
+  .why-choose__container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .why-choose__title {
+    text-align: center;
+    color: var(--color-primary);
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+  }
+
+  .why-choose__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  .why-choose__card {
+    text-align: center;
+    padding: 2rem 1rem;
+    border-top: 3px solid var(--color-accent);
+  }
+
+  .why-choose__icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  .why-choose__number {
+    display: block;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .why-choose__text {
+    color: #555;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 768px) {
+    .why-choose__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .why-choose__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

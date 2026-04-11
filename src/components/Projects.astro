@@ -1,0 +1,146 @@
+---
+import { Image } from "astro:assets";
+
+import project1 from "../assets/cold-room-project-installation-1.jpg";
+import project2 from "../assets/cold-room-project-installation-2.jpg";
+import project3 from "../assets/cold-room-project-installation-3.jpg";
+---
+
+<section class="projects fade-in" id="projects">
+  <div class="projects__container">
+    <div class="projects__header">
+      <h2 class="projects__title">Cold Room Panel Projects</h2>
+      <p class="projects__subtitle">
+        Real cold room installations using high-performance insulated panels in
+        Central America.
+      </p>
+    </div>
+
+    <div class="projects__grid">
+      <div class="projects__card">
+        <Image
+          src={project1}
+          alt="Cold room for food storage with insulated panels"
+          width={400}
+          height={300}
+          format="webp"
+          quality={80}
+        />
+        <div class="projects__info">
+          <p>Cold storage room for preserving perishable food products.</p>
+        </div>
+      </div>
+
+      <div class="projects__card">
+        <Image
+          src={project2}
+          alt="Industrial cold room with polyurethane panels installation"
+          width={400}
+          height={300}
+          format="webp"
+          quality={80}
+        />
+        <div class="projects__info">
+          <p>Installation of high-efficiency polyurethane insulated panels.</p>
+        </div>
+      </div>
+
+      <div class="projects__card">
+        <Image
+          src={project3}
+          alt="Custom cold room solution with insulated panels"
+          width={400}
+          height={300}
+          format="webp"
+          quality={80}
+        />
+        <div class="projects__info">
+          <p>Custom cold room solution for controlled temperature storage.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .projects {
+    padding: 4rem 2rem;
+    background-color: #f7f9fb;
+  }
+
+  .projects__container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .projects__header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .projects__title {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-primary);
+  }
+
+  .projects__subtitle {
+    color: #555;
+    font-size: 1rem;
+  }
+
+  .projects__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .projects__card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+
+  .projects__card:hover {
+    transform: translateY(-5px);
+  }
+
+  .projects__info {
+    padding: 1rem;
+  }
+
+  .projects__info p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 768px) {
+    .projects__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .projects__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .project img {
+      height: 200px;
+      object-fit: cover;
+      width: 100%;
+    }
+  }
+</style>

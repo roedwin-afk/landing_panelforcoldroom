@@ -1,0 +1,139 @@
+---
+import { Image } from "astro:assets";
+
+import foodIndustry from "../assets/cold-room-panels-food-industry.png";
+import pharmaceuticalIndustry from "../assets/cold-room-panels-pharmaceutical-industry.webp";
+import logisticsDistribution from "../assets/cold-room-panels-logistics-distribution.jpg";
+import agricultureIndustry from "../assets/cold-room-panels-agriculture-industry.jpg";
+
+const applications = [
+  {
+    image: foodIndustry,
+    title: "Food Processing Industry",
+    text: "Cold rooms for preservation, freezing, and processing in food production plants.",
+  },
+  {
+    image: pharmaceuticalIndustry,
+    title: "Pharmaceutical Industry",
+    text: "Temperature-controlled storage for medicines, vaccines, and sensitive products.",
+  },
+  {
+    image: logisticsDistribution,
+    title: "Logistics & Distribution",
+    text: "Cold storage solutions for distribution centers and refrigerated transport.",
+  },
+  {
+    image: agricultureIndustry,
+    title: "Agriculture Industry",
+    text: "Post-harvest storage for fruits, vegetables, and perishable goods.",
+  },
+];
+---
+
+<section class="applications fade-in" id="applications">
+  <div class="applications__container">
+    <h2 class="applications__title">Applications</h2>
+
+    <div class="applications__grid">
+      {
+        applications.map((app) => (
+          <div class="applications__card">
+            <Image
+              src={app.image}
+              alt={`${app.title} cold room panels`}
+              class="applications__img"
+              width={200}
+              height={180}
+              format="webp"
+              quality={80}
+            />
+
+            <div class="applications__content">
+              <h3 class="applications__name">{app.title}</h3>
+              <p class="applications__text">{app.text}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .applications {
+    padding: 5rem 2rem;
+    background-color: #f8f9fa;
+  }
+
+  .applications__container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .applications__title {
+    text-align: center;
+    color: var(--color-primary);
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+  }
+
+  .applications__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .applications__card {
+    background: var(--color-white);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  }
+
+  .applications__img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+
+  .applications__content {
+    padding: 1.25rem;
+  }
+
+  .applications__name {
+    color: var(--color-primary);
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .applications__text {
+    color: #555;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 768px) {
+    .applications__grid  {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .applications__grid  {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

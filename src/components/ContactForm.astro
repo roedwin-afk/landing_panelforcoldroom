@@ -1,0 +1,111 @@
+<section class="contact" id="contact">
+  <div class="contact__container">
+    <div class="contact__info fade-in">
+      <h1 class="contact__title">Request Your Quote</h1>
+      <p class="contact__description">
+        Contact us for expert guidance in choosing the right cold room panels for your project.
+        We will get back to you as soon as possible.
+      </p>
+
+      <div class="contact__data">
+        <p>📧 info@panelforcoldroom.com</p>
+        <p>📱 +503 6540-0000</p>
+        <p>📍 El Salvador</p>
+      </div>
+    </div>
+
+    <form
+      class="contact__form fade-in"
+      action="https://formspree.io/f/maqlkvyj"
+      method="POST"
+    >
+      <input type="hidden" name="_next" value="http://localhost:4321/thank-you" />
+
+      <input type="text" name="name" placeholder="Name" required />
+      <input type="email" name="email" placeholder="Email Address" required />
+      <input type="tel" name="phone" placeholder="Phone" />
+      <textarea
+        name="message"
+        rows="5"
+        placeholder="Tell us about your project..."
+        required
+      ></textarea>
+
+      <button type="submit">Send Request →</button>
+    </form>
+  </div>
+</section>
+
+<style>
+  .contact {
+    padding: 4rem 2rem;
+  }
+
+  .contact__container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .contact__title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .contact__description {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+
+  .contact__data p {
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+
+  .contact__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contact__form input,
+  .contact__form textarea {
+    padding: 0.9rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+  }
+
+  .contact__form button {
+    background-color: var(--color-accent);
+    color: white;
+    padding: 0.9rem;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+
+  .contact__form button:hover {
+    opacity: 0.9;
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 768px) {
+    .contact__container {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

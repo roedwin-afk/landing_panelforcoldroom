@@ -4,6 +4,24 @@ import { Image } from "astro:assets";
 import project1 from "../assets/cold-room-project-installation-1.jpg";
 import project2 from "../assets/cold-room-project-installation-2.jpg";
 import project3 from "../assets/cold-room-project-installation-3.jpg";
+
+const projects = [
+  {
+    cover: project1,
+    desc: "Cold storage room designed for perishable goods, ensuring thermal stability and product preservation in commercial operations.",
+    images: [project1.src, project1.src, project1.src],
+  },
+  {
+    cover: project2,
+    desc: "Installation of high-efficiency polyurethane panels to optimize energy consumption in industrial refrigeration systems.",
+    images: [project2.src, project2.src, project2.src, project2.src],
+  },
+  {
+    cover: project3,
+    desc: "Custom cold room solution tailored to specific temperature requirements and operational conditions.",
+    images: [project3.src, project3.src],
+  },
+];
 ---
 
 <section class="projects fade-in" id="projects">
@@ -11,56 +29,84 @@ import project3 from "../assets/cold-room-project-installation-3.jpg";
     <div class="projects__header">
       <h2 class="projects__title">Cold Room Panel Projects</h2>
       <p class="projects__subtitle">
-        Real cold room installations using high-performance insulated panels in
-        Central America.
+        Real installations using high-performance insulated panels in Mexico.
       </p>
     </div>
 
     <div class="projects__grid">
-      <div class="projects__card">
-        <Image
-          src={project1}
-          alt="Cold room for food storage with insulated panels"
-          width={400}
-          height={300}
-          format="webp"
-          quality={80}
-        />
-        <div class="projects__info">
-          <p>Cold storage room for preserving perishable food products.</p>
-        </div>
-      </div>
+      {
+        projects.map((project, pi) => (
+          <div class="project">
+            <div class="project__img-wrapper">
+              <Image
+                src={project.cover}
+                alt={project.desc}
+                width={400}
+                height={300}
+                class="project__img"
+              />
 
-      <div class="projects__card">
-        <Image
-          src={project2}
-          alt="Industrial cold room with polyurethane panels installation"
-          width={400}
-          height={300}
-          format="webp"
-          quality={80}
-        />
-        <div class="projects__info">
-          <p>Installation of high-efficiency polyurethane insulated panels.</p>
-        </div>
-      </div>
+              <button
+                class="project__zoom"
+                data-project={pi}
+                aria-label="View gallery"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+              </button>
 
-      <div class="projects__card">
-        <Image
-          src={project3}
-          alt="Custom cold room solution with insulated panels"
-          width={400}
-          height={300}
-          format="webp"
-          quality={80}
-        />
-        <div class="projects__info">
-          <p>Custom cold room solution for controlled temperature storage.</p>
-        </div>
-      </div>
+              <span class="project__count">{project.images.length} photos</span>
+            </div>
+
+            <div class="project__info">
+              <p>{project.desc}</p>
+            </div>
+          </div>
+        ))
+      }
     </div>
   </div>
 </section>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true">
+  <div class="modal__overlay" id="modal-overlay"></div>
+
+  <div class="modal__box">
+    <button class="modal__close" id="modal-close" aria-label="Close modal">
+      ✕
+    </button>
+
+    <div class="modal__img-wrap">
+      <img src="" alt="" id="modal-img" class="modal__img" />
+    </div>
+
+    <div class="modal__footer">
+      <p id="modal-desc" class="modal__desc"></p>
+
+      <div class="modal__nav">
+        <button class="modal__btn" id="modal-prev" aria-label="Previous image">
+          ←
+        </button>
+        <span id="modal-counter" class="modal__counter">1 / 1</span>
+        <button class="modal__btn" id="modal-next" aria-label="Next image">
+          →
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <style>
   .projects {
@@ -95,24 +141,186 @@ import project3 from "../assets/cold-room-project-installation-3.jpg";
     gap: 1.5rem;
   }
 
-  .projects__card {
+  .project {
     background: white;
     border-radius: 8px;
     overflow: hidden;
     transition: transform 0.3s ease;
+    cursor: pointer;
   }
 
-  .projects__card:hover {
+  .project:hover {
     transform: translateY(-5px);
   }
 
-  .projects__info {
+  .project__img-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project__img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  .project:hover .project__img {
+    transform: scale(1.05);
+  }
+
+  .project__zoom {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .project:hover .project__zoom {
+    opacity: 1;
+  }
+
+  .project__count {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 12px;
+  }
+
+  .project__info {
     padding: 1rem;
   }
 
-  .projects__info p {
+  .project__info p {
     font-size: 0.9rem;
     opacity: 0.8;
+    margin: 0;
+  }
+
+  .modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal.active {
+    display: flex;
+  }
+
+  .modal__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+  }
+
+  .modal__box {
+    position: relative;
+    z-index: 1001;
+    width: 90%;
+    max-width: 900px;
+    background: #1a1a1a;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .modal__close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    color: white;
+    font-size: 1rem;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1002;
+    transition: background 0.2s;
+  }
+
+  .modal__close:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  .modal__img-wrap {
+    width: 100%;
+    background: #000;
+  }
+
+  .modal__img {
+    width: 100%;
+    max-height: 65vh;
+    object-fit: contain;
+    display: block;
+  }
+
+  .modal__footer {
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .modal__desc {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.9rem;
+    flex: 1;
+    margin: 0;
+  }
+
+  .modal__nav {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .modal__btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal__btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .modal__counter {
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 0.85rem;
+    min-width: 40px;
+    text-align: center;
   }
 
   .fade-in {
@@ -130,6 +338,12 @@ import project3 from "../assets/cold-room-project-installation-3.jpg";
     .projects__grid {
       grid-template-columns: 1fr 1fr;
     }
+
+    .modal__footer {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
   }
 
   @media (max-width: 480px) {
@@ -137,10 +351,103 @@ import project3 from "../assets/cold-room-project-installation-3.jpg";
       grid-template-columns: 1fr;
     }
 
-    .project img {
+    .project__img {
       height: 200px;
-      object-fit: cover;
-      width: 100%;
     }
   }
 </style>
+
+<script define:vars={{ projects }}>
+  const modal = document.getElementById("modal");
+  const modalImg = document.getElementById("modal-img");
+  const modalDesc = document.getElementById("modal-desc");
+  const modalCounter = document.getElementById("modal-counter");
+  const modalClose = document.getElementById("modal-close");
+  const modalOverlay = document.getElementById("modal-overlay");
+  const modalPrev = document.getElementById("modal-prev");
+  const modalNext = document.getElementById("modal-next");
+
+  if (
+    !modal ||
+    !modalImg ||
+    !modalDesc ||
+    !modalCounter ||
+    !modalClose ||
+    !modalOverlay ||
+    !modalPrev ||
+    !modalNext
+  ) {
+    throw new Error("Projects modal elements are missing.");
+  }
+
+  let currentProject = 0;
+  let currentImg = 0;
+
+  function updateModal() {
+    const imgs = projects[currentProject].images;
+
+    modalImg.src = imgs[currentImg];
+    modalImg.alt = projects[currentProject].desc;
+    modalDesc.textContent = projects[currentProject].desc;
+    modalCounter.textContent = `${currentImg + 1} / ${imgs.length}`;
+
+    modalPrev.disabled = currentImg === 0;
+    modalNext.disabled = currentImg === imgs.length - 1;
+  }
+
+  function openModal(pi) {
+    currentProject = pi;
+    currentImg = 0;
+    modal.classList.add("active");
+    document.body.style.overflow = "hidden";
+    updateModal();
+  }
+
+  function closeModal() {
+    modal.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
+  document.querySelectorAll(".project__zoom").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const pi = parseInt(btn.dataset.project || "0", 10);
+      openModal(pi);
+    });
+  });
+
+  document.querySelectorAll(".project").forEach((card, pi) => {
+    card.addEventListener("click", () => openModal(pi));
+  });
+
+  modalClose.addEventListener("click", closeModal);
+  modalOverlay.addEventListener("click", closeModal);
+
+  modalPrev.addEventListener("click", () => {
+    if (currentImg > 0) {
+      currentImg--;
+      updateModal();
+    }
+  });
+
+  modalNext.addEventListener("click", () => {
+    if (currentImg < projects[currentProject].images.length - 1) {
+      currentImg++;
+      updateModal();
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (!modal.classList.contains("active")) return;
+
+    if (e.key === "Escape") closeModal();
+    if (e.key === "ArrowLeft" && currentImg > 0) {
+      currentImg--;
+      updateModal();
+    }
+    if (e.key === "ArrowRight" && currentImg < projects[currentProject].images.length - 1) {
+      currentImg++;
+      updateModal();
+    }
+  });
+</script>

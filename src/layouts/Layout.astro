@@ -21,7 +21,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content="/og-image.png" />
-    <meta property="og:locale" content="es_SV" />
+    <meta property="og:locale" content="en_US" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -51,11 +51,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       }
 
       :root {
-        --color-primary: #2c547a;
-        --color-accent: #e8a020;
-        --color-text: #1e1e1e;
+        --color-primary: #1f3a5f; /* azul más profundo */
+        --color-accent: #ff7a00; /* naranja más fuerte (más energético) */
+        --color-text: #1a1a1a;
         --color-white: #ffffff;
-        --color-bg: #ffffff;
+        --color-bg: #f5f7fa; /* fondo ligeramente gris */
         --font-base: "Inter", sans-serif;
       }
 

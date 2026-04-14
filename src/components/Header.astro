@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
-import logo from "../assets/panel-for-cold-room-logo.png";
+import logo from "../assets/logo.svg";
+import Menu from "./Menu.astro";
 ---
 
 <header class="header">
@@ -19,9 +20,7 @@ import logo from "../assets/panel-for-cold-room-logo.png";
     </div>
 
     <nav class="header__nav">
-      <a href="#solution">Solutions</a>
-      <a href="/blog">Blog</a>
-      <a href="/contact">Contact</a>
+      <Menu />
     </nav>
   </div>
 </header>
@@ -49,15 +48,20 @@ import logo from "../assets/panel-for-cold-room-logo.png";
     gap: 2rem;
   }
 
-  .header__nav a {
-    color: var(--color-white);
-    font-weight: 600;
-    font-size: 0.95rem;
-    transition: color 0.2s;
+  .header__logo {
+    /* Quitamos el width fijo de 600px para que no empuje otros elementos */
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
   }
 
-  .header__nav a:hover {
-    color: var(--color-accent);
+  .header__logo-img {
+    /* Forzamos a que el logo crezca ignorando el espacio en blanco interno */
+    height: 50px;
+    width: 3rem;
+    /* Un pequeño truco de escala si sigue viéndose pequeño */
+    transform: scale(5.5);
+    transform-origin: center;
   }
 
   .header__logo a {
@@ -65,18 +69,14 @@ import logo from "../assets/panel-for-cold-room-logo.png";
     cursor: pointer;
   }
   @media (max-width: 768px) {
-  .header__container {
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1rem 0;
-  }
+    .header__container {
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1rem 0;
+    }
 
-  .header__nav {
-    gap: 1.25rem;
+    .header__nav {
+      gap: 1.25rem;
+    }
   }
-
-  .header__nav a {
-    font-size: 0.85rem;
-  }
-}
 </style>

@@ -1,68 +1,81 @@
 ---
-import { Image } from "astro:assets";
-import polyurethanePanels from '../assets/polyurethane-cold-room-panels-el-salvador.webp';
+import polyurethanePanels from "../assets/polyurethane-cold-room-panels-el-salvador.webp";
 ---
 
 <section class="hero fade-in">
-  <div class="hero__container">
-    
-    <div class="hero__content">
+  <div class="hero__bg"></div>
+
+  <div class="hero__content">
+    <div class="hero__card">
       <h1 class="hero__title">
-        Cold Room Panels — High-Performance Industrial Insulation
+        Cold Room Panels for Industrial Refrigeration
       </h1>
 
       <p class="hero__description">
-        Supplier of polyurethane cold room panels engineered for industrial refrigeration. 
-        Compliant with TIF and FDA standards. Serving El Salvador and Central America.
+        High-performance polyurethane panels for cold rooms, food processing, and
+        temperature-controlled facilities. Designed for thermal efficiency,
+        durability, and demanding industrial environments.
       </p>
 
       <a href="/contact" class="hero__btn">
         Request a Quote →
       </a>
-    </div>
 
-    <div class="hero__image">
-      <Image
-        src={polyurethanePanels}
-        alt="Polyurethane cold room panels for industrial insulation"
-        class="hero__image_class"
-        width={600}
-        height={400}
-        loading="eager"
-        priority
-      />
+      <p class="hero__trust">
+        Trusted for industrial cold storage projects
+      </p>
     </div>
-
   </div>
 </section>
 
 <style>
   .hero {
-    background-color: var(--color-primary);
-    padding: 5rem 2rem;
-    min-height: 500px;
+    position: relative;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-image: url("/src/assets/polyurethane-cold-room-panels-el-salvador.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
-  .hero__container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: center;
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 20, 40, 0.42);
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .hero__card {
+    background: rgba(18, 44, 68, 0.88);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 14px;
+    padding: 3rem 3.5rem;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
   }
 
   .hero__title {
-    color: var(--color-white);
-    font-size: 2rem;
+    color: #ffffff;
+    font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 700;
-    line-height: 1.3;
-    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    margin-bottom: 1.2rem;
   }
 
   .hero__description {
-    color: rgba(255, 255, 255, 0.85);
-    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.05rem;
     line-height: 1.7;
     margin-bottom: 2rem;
   }
@@ -70,23 +83,27 @@ import polyurethanePanels from '../assets/polyurethane-cold-room-panels-el-salva
   .hero__btn {
     display: inline-block;
     background-color: var(--color-accent);
-    color: var(--color-white);
-    padding: 0.85rem 2rem;
-    border-radius: 4px;
+    color: #ffffff;
+    padding: 1rem 2.5rem;
+    border-radius: 6px;
     font-weight: 700;
-    font-size: 1rem;
-    transition: opacity 0.2s;
+    font-size: 1.05rem;
+    text-decoration: none;
+    transition:
+      transform 0.2s ease,
+      opacity 0.2s ease;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
   }
 
   .hero__btn:hover {
-    opacity: 0.9;
+    transform: translateY(-2px);
+    opacity: 0.95;
   }
 
-  .hero__image .hero__image_class {
-    border-radius: 8px;
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
+  .hero__trust {
+    margin-top: 1.2rem;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.92rem;
   }
 
   .fade-in {
@@ -99,18 +116,28 @@ import polyurethanePanels from '../assets/polyurethane-cold-room-panels-el-salva
     opacity: 1;
     transform: translateY(0);
   }
+
   @media (max-width: 768px) {
-  .hero {
-    padding: 3rem 1.5rem;
-  }
+    .hero {
+      min-height: 80vh;
+      padding: 2rem 1.2rem;
+      background-position: 25% center;
+    }
 
-  .hero__container {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
+    .hero__card {
+      padding: 2rem 1.5rem;
+    }
 
-  .hero__title {
-    font-size: 1.5rem;
+    .hero__title {
+      font-size: 1.9rem;
+    }
+
+    .hero__description {
+      font-size: 1rem;
+    }
+
+    .hero__trust {
+      font-size: 0.88rem;
+    }
   }
-}
 </style>

@@ -1,13 +1,13 @@
 ---
 import { Image } from "astro:assets";
-import polyurethanePanels from '../assets/polyurethane-insulated-panels.webp';
+import polyurethanePanels from "../assets/polyurethane-insulated-panels.webp";
 
 const features = [
-  "Thermal conductivity from 0.022 W/mK",
+  "High thermal efficiency with conductivity from 0.022 W/mK",
   "Available in thicknesses from 60 mm to 200 mm",
-  "Metal coating suitable for humid environments and industrial washdown areas",
-  "Complies with TIF, FDA, and HACCP standards",
-  "Fast installation with tongue-and-groove joint system",
+  "Metal facing suitable for humid environments and industrial washdown areas",
+  "Complies with food safety and sanitary standards, including TIF, FDA, and HACCP",
+  "Fast installation with a precision tongue-and-groove joint system",
 ];
 ---
 
@@ -26,13 +26,14 @@ const features = [
 
     <div class="solution__content">
       <h2 class="solution__title">
-        Polyurethane Cold Room Panels Engineered for Industrial Performance
+        Polyurethane Cold Room Panels for Maximum Insulation and Efficiency
       </h2>
 
       <p class="solution__text">
-        Our cold room panels are manufactured with a high-density polyurethane core
-        (PUR/PIR), metal facing, and airtight joints to deliver the thermal sealing
-        required for food processing, pharmaceutical, and logistics facilities.
+        Our PUR/PIR polyurethane panels are engineered to reduce thermal loss,
+        improve energy efficiency, and support sanitary compliance in industrial
+        cold rooms, food processing facilities, and temperature-controlled
+        environments.
       </p>
 
       <ul class="solution__list">
@@ -119,10 +120,11 @@ const features = [
     opacity: 1;
     transform: translateY(0);
   }
+
   @media (max-width: 768px) {
-  .solution__container {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+    .solution__container {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
   }
-}
 </style>

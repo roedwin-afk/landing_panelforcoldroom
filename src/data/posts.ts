@@ -1,15 +1,16 @@
 export const MOCK_POSTS = [
   {
     id: 1,
-    slug: "instalacion-cuartos-frios",
+    slug: "cold-room-installation-guide",
+    date: "2026-04-10T12:00:00",
     title: {
-      rendered: "Instalación de Cuartos Fríos: Guía Completa"
+      rendered: "Cold Room Installation: Complete Guide"
     },
     excerpt: {
-      rendered: "Resumen del post sobre instalación..."
+      rendered: "A quick overview of the key aspects of cold room installation."
     },
     content: {
-      rendered: "<p>Contenido completo...</p>"
+      rendered: "<p>Full post content...</p>"
     },
     _embedded: {
       "wp:featuredmedia": [

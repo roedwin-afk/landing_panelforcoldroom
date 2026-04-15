@@ -52,7 +52,7 @@ const features = [
 
 <style>
   .solution {
-    padding: 5rem 2rem;
+    padding: 5rem var(--container-padding);
     background-color: var(--color-white);
   }
 
@@ -122,6 +122,10 @@ const features = [
   }
 
   @media (max-width: 768px) {
+    .solution {
+      padding: 3rem var(--container-padding-mobile);
+    }
+
     .solution__container {
       grid-template-columns: 1fr;
       gap: 2rem;

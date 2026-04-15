@@ -62,8 +62,8 @@ const projects = [
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 >
-                  <circle cx="11" cy="11" r="8"></circle>
-                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
                 </svg>
               </button>
 
@@ -110,7 +110,7 @@ const projects = [
 
 <style>
   .projects {
-    padding: 4rem 2rem;
+    padding: 5rem var(--container-padding);
     background-color: #f7f9fb;
   }
 
@@ -335,6 +335,9 @@ const projects = [
   }
 
   @media (max-width: 768px) {
+    .projects {
+      padding: 3rem var(--container-padding-mobile);
+    }
     .projects__grid {
       grid-template-columns: 1fr 1fr;
     }
@@ -445,7 +448,10 @@ const projects = [
       currentImg--;
       updateModal();
     }
-    if (e.key === "ArrowRight" && currentImg < projects[currentProject].images.length - 1) {
+    if (
+      e.key === "ArrowRight" &&
+      currentImg < projects[currentProject].images.length - 1
+    ) {
       currentImg++;
       updateModal();
     }

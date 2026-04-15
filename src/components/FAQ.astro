@@ -1,0 +1,151 @@
+---
+const faqs = [
+    {
+        pregunta: "¿Qué es un panel para cuarto frío?",
+        respuesta:
+            "Es un sistema de aislamiento térmico con núcleo de poliuretano, diseñado para construir cámaras frías y mantener temperaturas controladas de forma eficiente.",
+    },
+    {
+        pregunta: "¿Los paneles cumplen normativas internacionales?",
+        respuesta:
+            "Sí, contamos con paneles que cumplen normativas como TIF y FDA, lo que los hace adecuados para aplicaciones industriales, alimentarias y de cadena fría.",
+    },
+    {
+        pregunta: "¿Realizan instalación en todo El Salvador?",
+        respuesta:
+            "Sí, brindamos atención en todo El Salvador y desarrollamos proyectos para clientes en distintos países de Centroamérica.",
+    },
+    {
+        pregunta: "¿Cómo puedo solicitar una cotización?",
+        respuesta:
+            "Puedes solicitar tu cotización desde el formulario de contacto o escribirnos por WhatsApp para recibir asesoría técnica según tu proyecto.",
+    },
+    {
+        pregunta: "¿Qué espesores de panel están disponibles?",
+        respuesta:
+            "Disponemos de paneles en distintos espesores, desde 60 mm hasta 200 mm, según el nivel de aislamiento que requiera tu proyecto.",
+    },
+    {
+        pregunta: "¿Cuál es la diferencia entre panel PUR y PIR?",
+        respuesta:
+            "Ambos ofrecen aislamiento térmico eficiente, pero el PIR destaca por su mejor comportamiento frente al fuego, lo que lo hace ideal para aplicaciones con mayores exigencias de seguridad.",
+    },
+    {
+        pregunta: "¿Para qué industrias se recomienda este tipo de panel?",
+        respuesta:
+            "Se recomienda para industria alimentaria, farmacéutica, logística, agroindustria y cualquier operación que requiera control de temperatura.",
+    },
+];
+---
+
+<section class="faq-section fade-in">
+    <div class="faq-section__container">
+        <h2 class="faq-section__title">Preguntas frecuentes</h2>
+
+        <div class="faq-section__list">
+            {
+                faqs.map((faq, i) => (
+                    <div class="faq-section__item">
+                        <button class="faq-section__question" data-index={i}>
+                            <span>{faq.pregunta}</span>
+                            <span class="faq-section__icon">+</span>
+                        </button>
+
+                        <div class="faq-section__answer">
+                            <p>{faq.respuesta}</p>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<style>
+    .faq-section {
+        padding: 5rem var(--container-padding);
+        background-color: #f8f9fb;
+    }
+
+    .faq-section__container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .faq-section__title {
+        text-align: center;
+        font-size: 1.75rem;
+        color: var(--color-primary);
+        margin-bottom: 2rem;
+    }
+
+    .faq-section__item {
+        border-bottom: 1px solid #ddd;
+    }
+
+    .faq-section__question {
+        width: 100%;
+        background: none;
+        border: none;
+        padding: 1.2rem 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        text-align: left;
+    }
+
+    .faq-section__icon {
+        font-size: 1.5rem;
+        color: var(--color-accent);
+        transition: transform 0.3s ease;
+    }
+
+    .faq-section__answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+
+    .faq-section__answer p {
+        padding-bottom: 1rem;
+        color: #555;
+        line-height: 1.6;
+    }
+
+    .faq-section__item.active .faq-section__answer {
+        max-height: 200px;
+    }
+
+    .faq-section__item.active .faq-section__icon {
+        transform: rotate(45deg);
+    }
+
+    @media (max-width: 768px) {
+        .faq-section {
+            padding: 3rem var(--container-padding-mobile);
+        }
+    }
+</style>
+
+<script>
+    const items = document.querySelectorAll(".faq-section__item");
+
+    items.forEach((item) => {
+        const button = item.querySelector(".faq-section__question");
+
+        if (!button) return;
+
+        button.addEventListener("click", () => {
+            const isActive = item.classList.contains("active");
+
+            items.forEach((i) => i.classList.remove("active"));
+
+            if (!isActive) {
+                item.classList.add("active");
+            }
+        });
+    });
+</script>

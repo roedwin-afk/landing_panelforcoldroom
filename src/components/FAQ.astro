@@ -1,58 +1,58 @@
 ---
 const faqs = [
     {
-        pregunta: "¿Qué es un panel para cuarto frío?",
-        respuesta:
-            "Es un sistema de aislamiento térmico con núcleo de poliuretano, diseñado para construir cámaras frías y mantener temperaturas controladas de forma eficiente.",
+        question: "What is a cold room panel?",
+        answer:
+            "It is a thermal insulation system with a polyurethane core, designed to build cold rooms and maintain controlled temperatures efficiently.",
     },
     {
-        pregunta: "¿Los paneles cumplen normativas internacionales?",
-        respuesta:
-            "Sí, contamos con paneles que cumplen normativas como TIF y FDA, lo que los hace adecuados para aplicaciones industriales, alimentarias y de cadena fría.",
+        question: "Do the panels comply with international standards?",
+        answer:
+            "Yes, we offer panels that comply with standards such as TIF and FDA, making them suitable for industrial, food, and cold chain applications.",
     },
     {
-        pregunta: "¿Realizan instalación en todo El Salvador?",
-        respuesta:
-            "Sí, brindamos atención en todo El Salvador y desarrollamos proyectos para clientes en distintos países de Centroamérica.",
+        question: "Do you provide installation throughout El Salvador?",
+        answer:
+            "Yes, we provide service across El Salvador and develop projects for clients in different Central American countries.",
     },
     {
-        pregunta: "¿Cómo puedo solicitar una cotización?",
-        respuesta:
-            "Puedes solicitar tu cotización desde el formulario de contacto o escribirnos por WhatsApp para recibir asesoría técnica según tu proyecto.",
+        question: "How can I request a quote?",
+        answer:
+            "You can request a quote through our contact form or message us on WhatsApp to receive technical advice based on your project.",
     },
     {
-        pregunta: "¿Qué espesores de panel están disponibles?",
-        respuesta:
-            "Disponemos de paneles en distintos espesores, desde 60 mm hasta 200 mm, según el nivel de aislamiento que requiera tu proyecto.",
+        question: "What panel thicknesses are available?",
+        answer:
+            "We offer panels in different thicknesses, from 60 mm to 200 mm, depending on the insulation level your project requires.",
     },
     {
-        pregunta: "¿Cuál es la diferencia entre panel PUR y PIR?",
-        respuesta:
-            "Ambos ofrecen aislamiento térmico eficiente, pero el PIR destaca por su mejor comportamiento frente al fuego, lo que lo hace ideal para aplicaciones con mayores exigencias de seguridad.",
+        question: "What is the difference between PUR and PIR panels?",
+        answer:
+            "Both provide efficient thermal insulation, but PIR stands out for its better fire performance, making it ideal for applications with higher safety requirements.",
     },
     {
-        pregunta: "¿Para qué industrias se recomienda este tipo de panel?",
-        respuesta:
-            "Se recomienda para industria alimentaria, farmacéutica, logística, agroindustria y cualquier operación que requiera control de temperatura.",
+        question: "Which industries are these panels recommended for?",
+        answer:
+            "They are recommended for the food industry, pharmaceuticals, logistics, agroindustry, and any operation that requires temperature control.",
     },
 ];
 ---
 
 <section class="faq-section fade-in">
     <div class="faq-section__container">
-        <h2 class="faq-section__title">Preguntas frecuentes</h2>
+        <h2 class="faq-section__title">Frequently Asked Questions</h2>
 
         <div class="faq-section__list">
             {
                 faqs.map((faq, i) => (
                     <div class="faq-section__item">
                         <button class="faq-section__question" data-index={i}>
-                            <span>{faq.pregunta}</span>
+                            <span>{faq.question}</span>
                             <span class="faq-section__icon">+</span>
                         </button>
 
                         <div class="faq-section__answer">
-                            <p>{faq.respuesta}</p>
+                            <p>{faq.answer}</p>
                         </div>
                     </div>
                 ))

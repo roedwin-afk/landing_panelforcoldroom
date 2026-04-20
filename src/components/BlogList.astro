@@ -1,0 +1,263 @@
+---
+interface Props {
+    posts: any[];
+    currentPage: number;
+    totalPages: number;
+    basePath: string;
+}
+
+const { posts, currentPage, totalPages, basePath } = Astro.props;
+const paginationLinks = Array.from({ length: totalPages }, (_, i) => i + 1);
+const locale = Astro.currentLocale ?? "en";
+const dateLocale = locale === "es" ? "es-US" : "en-US";
+
+import { en } from "../i18n/en";
+import { es } from "../i18n/es";
+
+const t = locale === "es" ? es : en;
+
+const blogBase = locale === "es" ? "/es/blog/" : "/blog/";
+const pageBase = locale === "es" ? "/es/blog/page/" : "/blog/page/";
+---
+
+<main class="blog">
+    <div class="blog__container">
+        <div class="blog__header">
+            <h1 class="blog__title">Blog</h1>
+            <p class="blog__description">
+                {t.blog.description}
+            </p>
+        </div>
+
+        <div class="blog__grid">
+            {
+                posts.map((post: any) => (
+                    <article class="blog-card">
+                        {post._embedded?.["wp:featuredmedia"]?.[0]
+                            ?.source_url && (
+                            <img
+                                src={
+                                    post._embedded["wp:featuredmedia"][0]
+                                        .source_url
+                                }
+                                alt={post.title.rendered}
+                                class="blog-card__image"
+                            />
+                        )}
+                        <div class="blog-card__content">
+                            <p class="blog-card__date">
+                                {new Date(post.date).toLocaleDateString(
+                                    dateLocale,
+                                    {
+                                        year: "numeric",
+                                        month: "long",
+                                        day: "numeric",
+                                    },
+                                )}
+                            </p>
+                            <h2 class="blog-card__title">
+                                <a
+                                    href={`${blogBase}${post.slug}/`}
+                                    set:html={post.title.rendered}
+                                />
+                            </h2>
+                            <p
+                                class="blog-card__description"
+                                set:html={post.excerpt.rendered}
+                            />
+                            <a
+                                href={`${blogBase}${post.slug}/`}
+                                class="blog-card__link"
+                            >
+                                {t.blog.btncta}
+                            </a>
+                        </div>
+                    </article>
+                ))
+            }
+        </div>
+
+        {
+            totalPages > 1 && (
+                <nav class="pagination" aria-label="Blog pagination">
+                    {currentPage > 1 && (
+                        <a
+                            href={
+                                currentPage === 2
+                                    ? blogBase
+                                    : `${pageBase}${currentPage - 1}/`
+                            }
+                            class="pagination__btn"
+                        >
+                            {t.blog.btn_prev}
+                        </a>
+                    )}
+                    <div class="pagination__pages">
+                        {paginationLinks.map((pageNum) => (
+                            <a
+                                href={
+                                    pageNum === 1
+                                        ? blogBase
+                                        : `${pageBase}${pageNum}/`
+                                }
+                                class={`pagination__page ${pageNum === currentPage ? "active" : ""}`}
+                            >
+                                {pageNum}
+                            </a>
+                        ))}
+                    </div>
+                    {currentPage < totalPages && (
+                        <a
+                            href={`${pageBase}${currentPage + 1}/`}
+                            class="pagination__btn"
+                        >
+                            {t.blog.btn_next}
+                        </a>
+                    )}
+                </nav>
+            )
+        }
+    </div>
+</main>
+
+<style>
+    .blog {
+        padding: 4rem 2rem;
+        background-color: #f8f9fa;
+    }
+
+    .blog__container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .blog__header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .blog__title {
+        font-size: 2.5rem;
+        color: var(--color-primary);
+        margin-bottom: 1rem;
+    }
+
+    .blog__description {
+        max-width: 700px;
+        margin: 0 auto;
+        color: #555;
+        line-height: 1.7;
+    }
+
+    .blog__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+
+    .blog-card {
+        background: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .blog-card__image {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+    }
+
+    .blog-card__content {
+        padding: 1.5rem;
+    }
+
+    .blog-card__date {
+        font-size: 0.85rem;
+        color: #777;
+        margin-bottom: 0.75rem;
+    }
+
+    .blog-card__title {
+        font-size: 1.2rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .blog-card__title a {
+        color: var(--color-primary);
+    }
+
+    .blog-card__description {
+        color: #555;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+    }
+
+    .blog-card__link {
+        color: var(--color-accent);
+        font-weight: 700;
+    }
+
+    .pagination {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 3rem;
+        flex-wrap: wrap;
+    }
+
+    .pagination__btn {
+        padding: 0.6rem 1.2rem;
+        border: 2px solid var(--color-primary);
+        border-radius: 6px;
+        color: var(--color-primary);
+        font-weight: 600;
+        transition: all 0.2s;
+    }
+
+    .pagination__btn:hover {
+        background-color: var(--color-primary);
+        color: white;
+    }
+
+    .pagination__pages {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .pagination__page {
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
+        border: 1px solid #ddd;
+        color: var(--color-primary);
+        font-weight: 600;
+        transition: all 0.2s;
+    }
+
+    .pagination__page:hover {
+        border-color: var(--color-primary);
+    }
+
+    .pagination__page.active {
+        background-color: var(--color-primary);
+        color: white;
+        border-color: var(--color-primary);
+    }
+
+    @media (max-width: 900px) {
+        .blog__grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .blog__grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

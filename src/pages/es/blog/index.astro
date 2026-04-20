@@ -1,3 +1,29 @@
 ---
-return Astro.redirect("./1/");
+import Layout from "../../../layouts/Layout.astro";
+import Header from "../../../components/Header.astro";
+import Footer from "../../../components/Footer.astro";
+import BlogList from "../../../components/BlogList.astro";
+import { MOCK_POSTS } from "../../../data/posts";
+
+const POSTS_PER_PAGE = 6;
+const allPosts = MOCK_POSTS;
+const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
+const posts = allPosts.slice(0, POSTS_PER_PAGE);
+
+const locale = Astro.currentLocale ?? 'en';
+const basePath = locale === 'es' ? '/es/blog/page/' : '/blog/page/';
 ---
+
+<Layout
+  title="Blog | Panel for Cold Room"
+  description="Artículos sobre paneles para cámaras frigoríficas, aislamiento industrial y proyectos de refrigeración en México."
+>
+  <Header />
+  <BlogList
+    posts={posts}
+    currentPage={1}
+    totalPages={totalPages}
+    basePath={basePath}
+  />
+  <Footer />
+</Layout>

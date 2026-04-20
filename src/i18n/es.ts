@@ -163,9 +163,11 @@ export const es = {
         },
     },
     blog: {
-        title: 'Paneles para Cámaras Frigoríficas',
+        title: 'Panel para Cuarto Frío',
         description: 'Información sobre paneles para cámaras frigoríficas, aislamiento industrial y proyectos de refrigeración en México.',
         btncta: 'Leer más →',
+        btn_next: 'Siguiente →',
+        btn_prev: '← Anterior',
     },
     form_contact: {
         title: 'Solicite su Cotización',

@@ -169,6 +169,8 @@ export const en = {
         title: 'Panel for Cold Room',
         description: 'Insights about cold room panels, industrial insulation, and refrigeration projects in Mexico.',
         btncta: 'Read more →',
+        btn_next: 'Next →',
+        btn_prev: '← Previous',
     },
     form_contact: {
         title: 'Request Your Quote',

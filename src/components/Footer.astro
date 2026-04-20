@@ -1,6 +1,12 @@
 ---
 import { Image } from "astro:assets";
 import logo from "../assets/logo.svg";
+import { en } from '../i18n/en';
+import { es } from '../i18n/es';
+
+const locale = Astro.currentLocale ?? 'en';
+const t = locale === 'es' ? es : en;
+
 ---
 
 <footer class="footer">
@@ -18,20 +24,19 @@ import logo from "../assets/logo.svg";
       <br />
 
       <p class="footer__desc">
-        Supplier of polyurethane cold room panels for industrial refrigeration
-        projects in Mexico and across Latin America.
+        {t.footer.description}
       </p>
     </div>
 
     <div class="footer__links">
-      <h4>Navigation</h4>
-      <a href="#solution">Solutions</a>
-      <a href="/blog/">Blog</a>
-      <a href="#contact">Contact</a>
+      <h4>{t.footer.footer_links.navigation}</h4>
+      <a href="#solution">{t.footer.footer_links.solution}</a>
+      <a href="/blog/">{t.footer.footer_links.blog}</a>
+      <a href="#contact">{t.footer.footer_links.contact}</a>
     </div>
 
     <div class="footer__contact">
-      <h4>Contact</h4>
+      <h4>{t.footer.footer_links.contact}</h4>
 
       <p>
         <a href="mailto:info@panelforcoldroom.com">

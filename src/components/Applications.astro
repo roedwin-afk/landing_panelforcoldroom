@@ -6,30 +6,33 @@ import pharmaceuticalIndustry from "../assets/cold-room-panels-pharmaceutical-in
 import logisticsDistribution from "../assets/cold-room-panels-logistics-distribution.jpg";
 import agricultureIndustry from "../assets/cold-room-panels-agriculture-industry.jpg";
 
+import { en } from '../i18n/en';
+import { es } from '../i18n/es';
+
+const locale = Astro.currentLocale ?? 'en';
+const t = locale === 'es' ? es : en;
+
+
 const applications = [
   {
     image: foodIndustry,
-    title: "Food Processing",
-    text:
-      "Cold rooms for preservation, freezing, and processing with precise temperature control and full sanitary compliance.",
+    title: t.applications.items.foodIndustry.title,
+    text: t.applications.items.foodIndustry.text,
   },
   {
     image: pharmaceuticalIndustry,
-    title: "Pharmaceutical",
-    text:
-      "Temperature-controlled storage for medicines, vaccines, and sensitive products requiring strict regulatory compliance.",
+    title: t.applications.items.pharmaceuticalIndustry.title,
+    text: t.applications.items.pharmaceuticalIndustry.text,
   },
   {
     image: logisticsDistribution,
-    title: "Logistics & Distribution",
-    text:
-      "Cold storage solutions for distribution centers and refrigerated transport, optimizing the cold chain and reducing losses.",
+    title: t.applications.items.logisticsDistribution.title,
+    text: t.applications.items.logisticsDistribution.text,
   },
   {
     image: agricultureIndustry,
-    title: "Agriculture",
-    text:
-      "Post-harvest storage for fruits, vegetables, and perishable goods, extending shelf life and maintaining product quality.",
+    title: t.applications.items.agricultureIndustry.title,
+    text: t.applications.items.agricultureIndustry.text,
   },
 ];
 ---
@@ -37,7 +40,7 @@ const applications = [
 <section class="applications fade-in" id="applications">
   <div class="applications__container">
     <div class="applications__header">
-      <h2 class="applications__title">Solutions for Different Industries</h2>
+      <h2 class="applications__title">{t.applications.title}</h2>
 
       <div class="applications__controls">
         <button

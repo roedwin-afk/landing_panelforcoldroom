@@ -1,5 +1,10 @@
 ---
-import polyurethanePanels from "../assets/polyurethane-cold-room-panels-el-salvador.webp";
+import { en } from '../i18n/en';
+import { es } from '../i18n/es';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+const locale = Astro.currentLocale ?? 'en';
+const t = locale === 'es' ? es : en;
 ---
 
 <section class="hero fade-in">
@@ -8,21 +13,19 @@ import polyurethanePanels from "../assets/polyurethane-cold-room-panels-el-salva
   <div class="hero__content">
     <div class="hero__card">
       <h1 class="hero__title">
-        Cold Room Panels for Industrial Refrigeration
+        {t.hero.title}
       </h1>
 
       <p class="hero__description">
-        High-performance polyurethane panels for cold rooms, food processing, and
-        temperature-controlled facilities. Designed for thermal efficiency,
-        durability, and demanding industrial environments.
+        {t.hero.description}
       </p>
 
-      <a href="/contact" class="hero__btn">
-        Request a Quote →
+      <a href={getRelativeLocaleUrl(locale, '/contact')} class="hero__btn">
+        {t.hero.cta}
       </a>
 
       <p class="hero__trust">
-        Trusted for industrial cold storage projects
+        {t.hero.trust}
       </p>
     </div>
   </div>

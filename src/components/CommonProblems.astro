@@ -1,5 +1,10 @@
 ---
 import { Thermometer, AlertTriangle, Wrench } from "@lucide/astro";
+import { en } from '../i18n/en';
+import { es } from '../i18n/es';
+
+const locale = Astro.currentLocale ?? 'en';
+const t = locale === 'es' ? es : en;
 
 const icons = {
   temperature: Thermometer,
@@ -8,37 +13,13 @@ const icons = {
 };
 
 type IconName = "temperature" | "compliance" | "installation";
-
-const problems: {
-  icon: IconName;
-  title: string;
-  text: string;
-}[] = [
-  {
-    icon: "temperature",
-    title: "Temperature Loss & Energy Waste",
-    text:
-      "Poor insulation increases thermal transfer, driving energy consumption up by as much as 40% and putting cold chain performance at risk.",
-  },
-  {
-    icon: "compliance",
-    title: "Regulatory Compliance Risks",
-    text:
-      "Using non-certified materials can make it harder to meet food safety and sanitary standards, leading to fines, failed inspections, or operational disruptions.",
-  },
-  {
-    icon: "installation",
-    title: "Slow & Costly Installations",
-    text:
-      "Traditional systems take longer to install, demand more labor, and often result in higher maintenance costs over time.",
-  },
-];
+const problems = t.problems.items;
 ---
 
 <section class="problems fade-in" id="problems">
   <div class="problems__container">
     <h2 class="problems__section-title">
-      Problems caused by poor insulation
+      {t.problems.sectionTitle}
     </h2>
 
     <div class="problems__grid">

@@ -1,0 +1,46 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="¡Gracias! | Hemos recibido su solicitud"
+  description="Gracias por contactarnos. Nuestro equipo se pondrá en contacto con usted en breve con su cotización de paneles para cámaras frigoríficas."
+>
+  <div class="thank-you">
+    <h1>¡Gracias!</h1>
+
+    <p>
+      Hemos recibido su solicitud. Nuestro equipo se comunicará con usted en breve para brindarle más información.
+    </p>
+
+    <a href="/">← Volver al inicio</a>
+  </div>
+</Layout>
+
+<style>
+  .thank-you {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 1.5rem;
+    padding: 4rem 2rem;
+  }
+
+  .thank-you h1 {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+  }
+
+  .thank-you p {
+    font-size: 1.1rem;
+    color: #555;
+  }
+
+  .thank-you a {
+    color: var(--color-accent);
+    font-weight: 700;
+  }
+</style>

@@ -5,20 +5,26 @@ import project1 from "../assets/cold-room-project-installation-1.jpg";
 import project2 from "../assets/cold-room-project-installation-2.jpg";
 import project3 from "../assets/cold-room-project-installation-3.jpg";
 
+import { en } from '../i18n/en';
+import { es } from '../i18n/es';
+
+const locale = Astro.currentLocale ?? 'en';
+const t = locale === 'es' ? es : en;
+
 const projects = [
   {
     cover: project1,
-    desc: "Cold storage room designed for perishable goods, ensuring thermal stability and product preservation in commercial operations.",
+    desc: t.projects.items.project1.desc,
     images: [project1.src, project1.src, project1.src],
   },
   {
     cover: project2,
-    desc: "Installation of high-efficiency polyurethane panels to optimize energy consumption in industrial refrigeration systems.",
+    desc: t.projects.items.project2.desc,
     images: [project2.src, project2.src, project2.src, project2.src],
   },
   {
     cover: project3,
-    desc: "Custom cold room solution tailored to specific temperature requirements and operational conditions.",
+    desc: t.projects.items.project3.desc,
     images: [project3.src, project3.src],
   },
 ];
@@ -27,9 +33,9 @@ const projects = [
 <section class="projects fade-in" id="projects">
   <div class="projects__container">
     <div class="projects__header">
-      <h2 class="projects__title">Cold Room Panel Projects</h2>
+      <h2 class="projects__title">{t.projects.title}</h2>
       <p class="projects__subtitle">
-        Real installations using high-performance insulated panels in Mexico.
+        {t.projects.subtitle}
       </p>
     </div>
 

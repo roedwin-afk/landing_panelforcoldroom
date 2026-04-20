@@ -1,14 +1,12 @@
 ---
 import { Image } from "astro:assets";
 import polyurethanePanels from "../assets/polyurethane-insulated-panels.webp";
+import { en } from '../i18n/en';
+import { es } from '../i18n/es';
 
-const features = [
-  "High thermal efficiency with conductivity from 0.022 W/mK",
-  "Available in thicknesses from 60 mm to 200 mm",
-  "Metal facing suitable for humid environments and industrial washdown areas",
-  "Complies with food safety and sanitary standards, including TIF, FDA, and HACCP",
-  "Fast installation with a precision tongue-and-groove joint system",
-];
+const locale = Astro.currentLocale ?? 'en';
+const t = locale === 'es' ? es : en;
+
 ---
 
 <section class="solution fade-in" id="solution">
@@ -26,19 +24,16 @@ const features = [
 
     <div class="solution__content">
       <h2 class="solution__title">
-        Polyurethane Cold Room Panels for Maximum Insulation and Efficiency
+        {t.solution.title}
       </h2>
 
       <p class="solution__text">
-        Our PUR/PIR polyurethane panels are engineered to reduce thermal loss,
-        improve energy efficiency, and support sanitary compliance in industrial
-        cold rooms, food processing facilities, and temperature-controlled
-        environments.
+        {t.solution.text}
       </p>
 
       <ul class="solution__list">
         {
-          features.map((feature) => (
+          t.solution.features.map((feature) => (
             <li class="solution__item">
               <span class="solution__check">✓</span>
               {feature}

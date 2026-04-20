@@ -2,12 +2,16 @@
 import { Image } from "astro:assets";
 import logo from "../assets/logo.svg";
 import Menu from "./Menu.astro";
+import { getRelativeLocaleUrl } from "astro:i18n";
+const locale = Astro.currentLocale ?? "en";
+
+const currentPath = Astro.url.pathname.replace(/^\/(en|es)/, '') || '/';
 ---
 
 <header class="header">
   <div class="header__container">
     <div class="header__logo">
-      <a href="/">
+      <a href={getRelativeLocaleUrl(locale, "/")}>
         <Image
           src={logo}
           alt="Panel for Cold Room Logo"
@@ -21,6 +25,17 @@ import Menu from "./Menu.astro";
 
     <nav class="header__nav">
       <Menu />
+      <div class="lang-switcher">
+        <a
+          href={getRelativeLocaleUrl("en", currentPath)}
+          class:list={["lang-btn", { active: locale === "en" }]}>EN</a
+        >
+        <div class="lang-divider"></div>
+        <a
+          href={getRelativeLocaleUrl("es", currentPath)}
+          class:list={["lang-btn", { active: locale === "es" }]}>ES</a
+        >
+      </div>
     </nav>
   </div>
 </header>
@@ -66,6 +81,45 @@ import Menu from "./Menu.astro";
     display: inline-block;
     cursor: pointer;
   }
+
+  .lang-switcher {
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .lang-btn {
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.6);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.15s;
+    letter-spacing: 0.5px;
+    text-decoration: none; /* agregado */
+    display: inline-block; /* agregado */
+  }
+
+  .lang-btn:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .lang-btn.active {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.18);
+  }
+
+  .lang-divider {
+    width: 1px;
+    height: 16px;
+    background: rgba(255, 255, 255, 0.25);
+  }
+
   @media (max-width: 768px) {
     .header__container {
       flex-direction: column;

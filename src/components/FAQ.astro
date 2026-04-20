@@ -1,46 +1,16 @@
 ---
-const faqs = [
-    {
-        question: "What is a cold room panel?",
-        answer:
-            "It is a thermal insulation system with a polyurethane core, designed to build cold rooms and maintain controlled temperatures efficiently.",
-    },
-    {
-        question: "Do the panels comply with international standards?",
-        answer:
-            "Yes, we offer panels that comply with standards such as TIF and FDA, making them suitable for industrial, food, and cold chain applications.",
-    },
-    {
-        question: "Do you provide installation throughout El Salvador?",
-        answer:
-            "Yes, we provide service across El Salvador and develop projects for clients in different Central American countries.",
-    },
-    {
-        question: "How can I request a quote?",
-        answer:
-            "You can request a quote through our contact form or message us on WhatsApp to receive technical advice based on your project.",
-    },
-    {
-        question: "What panel thicknesses are available?",
-        answer:
-            "We offer panels in different thicknesses, from 60 mm to 200 mm, depending on the insulation level your project requires.",
-    },
-    {
-        question: "What is the difference between PUR and PIR panels?",
-        answer:
-            "Both provide efficient thermal insulation, but PIR stands out for its better fire performance, making it ideal for applications with higher safety requirements.",
-    },
-    {
-        question: "Which industries are these panels recommended for?",
-        answer:
-            "They are recommended for the food industry, pharmaceuticals, logistics, agroindustry, and any operation that requires temperature control.",
-    },
-];
+import { en } from '../i18n/en';
+import { es } from '../i18n/es';
+
+const locale = Astro.currentLocale ?? 'en';
+const t = locale === 'es' ? es : en;
+
+const faqs = t.faqs.items;
 ---
 
 <section class="faq-section fade-in">
     <div class="faq-section__container">
-        <h2 class="faq-section__title">Frequently Asked Questions</h2>
+        <h2 class="faq-section__title">{t.faqs.title}</h2>
 
         <div class="faq-section__list">
             {

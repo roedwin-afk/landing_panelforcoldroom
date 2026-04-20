@@ -1,6 +1,15 @@
-<a href="#solution">Solutions</a>
-<a href="/blog">Blog</a>
-<a href="/contact">Contact</a>
+---
+import { en } from '../i18n/en';
+import { es } from '../i18n/es';
+import { getRelativeLocaleUrl } from "astro:i18n";
+
+const locale = Astro.currentLocale ?? 'en';
+const t = locale === 'es' ? es : en;
+---
+
+<a href="#solution">{t.menu.solution}</a>
+<a href={getRelativeLocaleUrl(locale, "/blog/")}>{t.menu.blog}</a>
+<a href={getRelativeLocaleUrl(locale, "/contact/")}>{t.menu.contact}</a>
 
 <style>
   a {

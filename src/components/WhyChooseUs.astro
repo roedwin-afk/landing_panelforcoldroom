@@ -1,6 +1,12 @@
 ---
 import { Clock3, Building2, MessageCircle, Award } from "@lucide/astro";
 
+import { en } from '../i18n/en';
+import { es } from '../i18n/es';
+
+const locale = Astro.currentLocale ?? 'en';
+const t = locale === 'es' ? es : en;
+
 const icons = {
   clock: Clock3,
   building: Building2,
@@ -10,38 +16,13 @@ const icons = {
 
 type IconName = "clock" | "building" | "message" | "award";
 
-const stats: {
-  icon: IconName;
-  number: string;
-  text: string;
-}[] = [
-  {
-    icon: "clock",
-    number: "+10 Years of experience",
-    text: "Years of experience in insulation solutions for industrial projects",
-  },
-  {
-    icon: "building",
-    number: "+350 Projects delivered",
-    text: "Projects delivered across industrial and commercial sectors",
-  },
-  {
-    icon: "message",
-    number: "Technical Support",
-    text: "We help you select the right panel based on your application, temperature, and operational needs",
-  },
-  {
-    icon: "award",
-    number: "Certified Quality",
-    text: "Materials designed to meet international standards for industrial and sanitary environments",
-  },
-];
+const stats = t.whyChooseUs.stats;
 ---
 
 <section class="why-choose fade-in" id="why-choose">
   <div class="why-choose__container">
     <h2 class="why-choose__title">
-      Why Choose Our Cold Room Panels?
+      {t.whyChooseUs.title}
     </h2>
 
     <div class="why-choose__grid">

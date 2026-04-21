@@ -43,9 +43,9 @@ const currentPath = Astro.url.pathname.replace(/^\/(en|es)/, '') || '/';
 
     <div class="footer__links">
       <h4>{t.footer.footer_links.navigation}</h4>
-      <a href="#solution">{t.footer.footer_links.solution}</a>
-      <a href="/blog/">{t.footer.footer_links.blog}</a>
-      <a href="#contact">{t.footer.footer_links.contact}</a>
+      <a href={getRelativeLocaleUrl(locale, "/") + "#solution"}>{t.footer.footer_links.solution}</a>
+      <a href={getRelativeLocaleUrl(locale, "/") + "blog/"}>{t.footer.footer_links.blog}</a>
+      <a href={getRelativeLocaleUrl(locale, "/") + "contact/"}>{t.footer.footer_links.contact}</a>
     </div>
 
     <div class="footer__contact">

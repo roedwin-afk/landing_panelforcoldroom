@@ -69,6 +69,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
       html {
         overflow-x: hidden;
+        scroll-behavior: smooth;
       }
 
       body {
@@ -109,6 +110,18 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       );
 
       elements.forEach((el) => observer.observe(el));
+    </script>
+    <script>
+      window.addEventListener("load", () => {
+        if (window.location.hash) {
+          const el = document.querySelector(window.location.hash);
+          if (el) {
+            setTimeout(() => {
+              el.scrollIntoView({ behavior: "smooth" });
+            }, 500);
+          }
+        }
+      });
     </script>
   </body>
 </html>

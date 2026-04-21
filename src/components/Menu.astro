@@ -7,7 +7,9 @@ const locale = Astro.currentLocale ?? 'en';
 const t = locale === 'es' ? es : en;
 ---
 
-<a href="#solution">{t.menu.solution}</a>
+<a href={getRelativeLocaleUrl(locale, "/") + "#solution"}>
+  {t.menu.solution}
+</a>
 <a href={getRelativeLocaleUrl(locale, "/blog/")}>{t.menu.blog}</a>
 <a href={getRelativeLocaleUrl(locale, "/contact/")}>{t.menu.contact}</a>
 

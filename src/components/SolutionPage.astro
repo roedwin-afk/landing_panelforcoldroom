@@ -1,0 +1,650 @@
+---
+import { Image } from "astro:assets";
+import polyurethanePanels from "../assets/polyurethane-insulated-panels.webp";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { en } from "../i18n/en";
+import { es } from "../i18n/es";
+
+const locale = Astro.currentLocale ?? "en";
+const t = locale === "es" ? es : en;
+
+const data = t.solutionPage;
+---
+
+<main class="solution-page">
+  <section class="solution-hero">
+    <div class="solution-hero__container">
+      <div class="solution-hero__content">
+        <span class="solution-hero__eyebrow">{data.hero.eyebrow}</span>
+
+        <h1 class="solution-hero__title">{data.hero.title}</h1>
+        <p class="solution-hero__text">{data.hero.text}</p>
+
+        <div class="solution-hero__actions">
+          <a href={getRelativeLocaleUrl(locale, "/contact/")} class="btn btn--primary">
+            {data.hero.primaryCta}
+          </a>
+
+          <a href="#applications" class="btn btn--secondary">
+            {data.hero.secondaryCta}
+          </a>
+        </div>
+      </div>
+
+      <div class="solution-hero__media">
+        <div class="solution-hero__image-wrap">
+          <Image
+            src={polyurethanePanels}
+            alt={data.hero.imageAlt}
+            width={700}
+            height={560}
+            format="webp"
+            quality={85}
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="problems">
+    <div class="section-head">
+      <span class="section-head__kicker">{data.problems.kicker}</span>
+      <h2>{data.problems.title}</h2>
+    </div>
+
+    <div class="problems__grid">
+      {data.problems.items.map((item) => (
+        <article class="problem-card">
+          <span class="problem-card__icon">•</span>
+          <p>{item}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="overview">
+    <div class="overview__container">
+      <div class="overview__content">
+        <span class="section-label">{data.overview.kicker}</span>
+        <h2>{data.overview.title}</h2>
+        <p>{data.overview.text1}</p>
+        <p>{data.overview.text2}</p>
+      </div>
+
+      <div class="overview__stats">
+        {data.overview.stats.map((item) => (
+          <div class="stat-card">
+            <strong>{item.label}</strong>
+            <span>{item.value}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="benefits">
+    <div class="section-head">
+      <span class="section-head__kicker">{data.benefits.kicker}</span>
+      <h2>{data.benefits.title}</h2>
+    </div>
+
+    <div class="benefits__grid">
+      {data.benefits.items.map((item) => (
+        <article class="benefit-card">
+          <div class="benefit-card__top">
+            <span class="benefit-card__check">✓</span>
+            <h3>{item.title}</h3>
+          </div>
+          <p>{item.text}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="applications" id="applications">
+    <div class="section-head">
+      <span class="section-head__kicker">{data.applications.kicker}</span>
+      <h2>{data.applications.title}</h2>
+    </div>
+
+    <div class="applications__grid">
+      {data.applications.items.map((item) => (
+        <article class="application-card">
+          <span class="application-card__bullet"></span>
+          <p>{item}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="process">
+    <div class="section-head">
+      <span class="section-head__kicker">{data.process.kicker}</span>
+      <h2>{data.process.title}</h2>
+    </div>
+
+    <div class="process__grid">
+      {data.process.items.map((item) => (
+        <article class="process-card">
+          <span class="process-card__step">{item.step}</span>
+          <h3>{item.title}</h3>
+          <p>{item.text}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="comparison">
+    <div class="section-head">
+      <span class="section-head__kicker">{data.comparison.kicker}</span>
+      <h2>{data.comparison.title}</h2>
+    </div>
+
+    <div class="comparison__table-wrap">
+      <table class="comparison__table">
+        <thead>
+          <tr>
+            <th>{data.comparison.headers.aspect}</th>
+            <th>{data.comparison.headers.solution}</th>
+            <th>{data.comparison.headers.other}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.comparison.rows.map((row) => (
+            <tr>
+              <td>{row.aspect}</td>
+              <td>{row.solution}</td>
+              <td>{row.other}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="faq">
+    <div class="section-head">
+      <span class="section-head__kicker">{data.faq.kicker}</span>
+      <h2>{data.faq.title}</h2>
+    </div>
+
+    <div class="faq__list">
+      {data.faq.items.map((item) => (
+        <details class="faq-item">
+          <summary>{item.q}</summary>
+          <p>{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <section class="solution-cta">
+    <div class="solution-cta__box">
+      <div class="solution-cta__content">
+        <span class="solution-cta__kicker">{data.cta.kicker}</span>
+        <h2>{data.cta.title}</h2>
+        <p>{data.cta.text}</p>
+      </div>
+
+      <a href={getRelativeLocaleUrl(locale, "/contact/")} class="btn btn--light">
+        {data.cta.button}
+      </a>
+    </div>
+  </section>
+</main>
+
+<style>
+  :global(html) {
+    scroll-behavior: smooth;
+  }
+
+  .solution-page {
+    background:
+      radial-gradient(circle at top left, rgba(20, 91, 154, 0.08), transparent 28%),
+      linear-gradient(180deg, #ffffff 0%, #f7f9fc 100%);
+  }
+
+  .solution-hero,
+  .problems,
+  .overview,
+  .benefits,
+  .applications,
+  .process,
+  .comparison,
+  .faq,
+  .solution-cta {
+    padding: 5rem var(--container-padding);
+  }
+
+  .solution-hero {
+    padding-top: 7rem;
+  }
+
+  .solution-hero__container,
+  .overview__container,
+  .section-head,
+  .comparison__table-wrap,
+  .faq__list,
+  .solution-cta__box,
+  .problems__grid,
+  .benefits__grid,
+  .applications__grid,
+  .process__grid {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .solution-hero__container {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .solution-hero__eyebrow,
+  .section-head__kicker,
+  .section-label,
+  .solution-cta__kicker {
+    display: inline-block;
+    margin-bottom: 0.9rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+
+  .solution-hero__title {
+    font-size: clamp(2.2rem, 4vw, 4rem);
+    line-height: 1.08;
+    color: var(--color-primary);
+    margin-bottom: 1.25rem;
+    max-width: 12ch;
+  }
+
+  .solution-hero__text {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #55606f;
+    max-width: 60ch;
+    margin-bottom: 2rem;
+  }
+
+  .solution-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50px;
+    padding: 0.95rem 1.5rem;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+
+  .btn--primary {
+    background: var(--color-primary);
+    color: white;
+    box-shadow: 0 12px 30px rgba(20, 91, 154, 0.18);
+  }
+
+  .btn--secondary {
+    background: rgba(20, 91, 154, 0.08);
+    color: var(--color-primary);
+    border: 1px solid rgba(20, 91, 154, 0.12);
+  }
+
+  .btn--light {
+    background: white;
+    color: var(--color-primary);
+    white-space: nowrap;
+  }
+
+  .solution-hero__image-wrap {
+    position: relative;
+    background: linear-gradient(180deg, #ffffff 0%, #edf3f9 100%);
+    border: 1px solid rgba(20, 91, 154, 0.08);
+    border-radius: 24px;
+    padding: 1rem;
+    box-shadow: 0 24px 60px rgba(10, 32, 58, 0.08);
+  }
+
+  .solution-hero__image-wrap img {
+    width: 100%;
+    height: 520px;
+    object-fit: cover;
+    border-radius: 18px;
+    display: block;
+  }
+
+  .section-head {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .section-head h2,
+  .overview__content h2,
+  .solution-cta__content h2 {
+    font-size: clamp(1.75rem, 3vw, 2.6rem);
+    line-height: 1.2;
+    color: var(--color-primary);
+    margin: 0;
+  }
+
+  .problems__grid,
+  .benefits__grid,
+  .applications__grid,
+  .process__grid {
+    display: grid;
+    gap: 1.3rem;
+  }
+
+  .problems__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .benefits__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .applications__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .process__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .problem-card,
+  .benefit-card,
+  .application-card,
+  .process-card,
+  .stat-card {
+    background: white;
+    border: 1px solid rgba(20, 91, 154, 0.08);
+    border-radius: 18px;
+    box-shadow: 0 12px 30px rgba(10, 32, 58, 0.04);
+  }
+
+  .problem-card {
+    padding: 1.4rem;
+    display: flex;
+    gap: 0.9rem;
+    align-items: flex-start;
+  }
+
+  .problem-card__icon {
+    color: var(--color-accent);
+    font-size: 1.4rem;
+    line-height: 1;
+    margin-top: -0.05rem;
+    flex-shrink: 0;
+  }
+
+  .problem-card p,
+  .benefit-card p,
+  .application-card p,
+  .process-card p,
+  .overview__content p,
+  .faq-item p,
+  .solution-cta__content p {
+    color: #596474;
+    line-height: 1.75;
+    margin: 0;
+  }
+
+  .overview__container {
+    display: grid;
+    grid-template-columns: 1fr 0.9fr;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .overview__content {
+    max-width: 62ch;
+  }
+
+  .overview__content p {
+    margin-top: 1.1rem;
+  }
+
+  .overview__stats {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .stat-card {
+    padding: 1.4rem 1.5rem;
+  }
+
+  .stat-card strong {
+    display: block;
+    font-size: 1.1rem;
+    color: var(--color-primary);
+    margin-bottom: 0.35rem;
+  }
+
+  .stat-card span {
+    color: #627081;
+  }
+
+  .benefit-card {
+    padding: 1.5rem;
+  }
+
+  .benefit-card__top {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .benefit-card__check {
+    display: inline-flex;
+    width: 30px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 168, 107, 0.1);
+    color: var(--color-accent);
+    border-radius: 999px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .benefit-card h3,
+  .process-card h3 {
+    margin: 0;
+    color: var(--color-primary);
+    font-size: 1.1rem;
+    line-height: 1.4;
+  }
+
+  .application-card {
+    padding: 1.4rem 1.2rem;
+    text-align: center;
+  }
+
+  .application-card__bullet {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-bottom: 0.9rem;
+    border-radius: 999px;
+    background: var(--color-accent);
+    box-shadow: 0 0 0 8px rgba(0, 168, 107, 0.08);
+  }
+
+  .process-card {
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .process-card__step {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--color-accent);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.9rem;
+  }
+
+  .comparison__table-wrap {
+    overflow-x: auto;
+    background: white;
+    border: 1px solid rgba(20, 91, 154, 0.08);
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(10, 32, 58, 0.04);
+  }
+
+  .comparison__table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 760px;
+  }
+
+  .comparison__table th,
+  .comparison__table td {
+    padding: 1rem 1.1rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(20, 91, 154, 0.08);
+  }
+
+  .comparison__table thead th {
+    background: rgba(20, 91, 154, 0.05);
+    color: var(--color-primary);
+    font-size: 0.95rem;
+  }
+
+  .comparison__table tbody td {
+    color: #586476;
+  }
+
+  .faq__list {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .faq-item {
+    background: white;
+    border: 1px solid rgba(20, 91, 154, 0.08);
+    border-radius: 16px;
+    padding: 1.2rem 1.3rem;
+    box-shadow: 0 10px 25px rgba(10, 32, 58, 0.04);
+  }
+
+  .faq-item summary {
+    cursor: pointer;
+    list-style: none;
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1.5;
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item p {
+    margin-top: 0.9rem;
+  }
+
+  .solution-cta {
+    padding-bottom: 6rem;
+  }
+
+  .solution-cta__box {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #0f4e83 100%);
+    border-radius: 24px;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    box-shadow: 0 20px 45px rgba(15, 78, 131, 0.22);
+  }
+
+  .solution-cta__content h2,
+  .solution-cta__content p,
+  .solution-cta__kicker {
+    color: white;
+  }
+
+  .solution-cta__content p {
+    max-width: 62ch;
+    opacity: 0.92;
+    margin-top: 0.8rem;
+  }
+
+  @media (max-width: 1024px) {
+    .solution-hero__container,
+    .overview__container {
+      grid-template-columns: 1fr;
+    }
+
+    .problems__grid,
+    .benefits__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .applications__grid,
+    .process__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .solution-hero__title {
+      max-width: 100%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .solution-hero,
+    .problems,
+    .overview,
+    .benefits,
+    .applications,
+    .process,
+    .comparison,
+    .faq,
+    .solution-cta {
+      padding: 3.5rem var(--container-padding-mobile);
+    }
+
+    .solution-hero {
+      padding-top: 5.5rem;
+    }
+
+    .problems__grid,
+    .benefits__grid,
+    .applications__grid,
+    .process__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .solution-hero__image-wrap img {
+      height: 340px;
+    }
+
+    .solution-cta__box {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 1.6rem;
+    }
+
+    .btn,
+    .btn--light {
+      width: 100%;
+    }
+  }
+</style>

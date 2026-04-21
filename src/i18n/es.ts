@@ -183,5 +183,194 @@ export const es = {
             message_placeholder: 'Cuéntenos sobre su proyecto...',
         },
         submit: 'Enviar Solicitud →',
+    },
+    solutionPage: {
+        hero: {
+            eyebrow: "Solución especializada",
+            title: "Paneles de poliuretano para cuartos fríos de alto rendimiento",
+            text: "Una solución diseñada para optimizar el aislamiento térmico, mejorar la eficiencia operativa y ofrecer un sistema confiable para proyectos de refrigeración industrial.",
+            primaryCta: "Solicitar cotización",
+            secondaryCta: "Ver aplicaciones",
+            imageAlt: "Paneles de poliuretano para proyectos de cuartos fríos"
+        },
+
+        problems: {
+            kicker: "Desafíos frecuentes",
+            title: "Problemas que esta solución ayuda a resolver",
+            items: [
+                "Pérdida de temperatura y variaciones térmicas dentro del cuarto frío",
+                "Consumo energético elevado por un aislamiento deficiente",
+                "Condensación y humedad en superficies críticas",
+                "Dificultad para mantener espacios higiénicos y fáciles de limpiar",
+                "Instalaciones poco duraderas o con bajo desempeño estructural",
+                "Proyectos que necesitan una solución modular, rápida y eficiente"
+            ]
+        },
+
+        overview: {
+            kicker: "Visión general",
+            title: "Una solución térmica pensada para exigencias reales",
+            text1: "Los paneles de poliuretano son una de las opciones más eficientes para construir cuartos fríos, cámaras de refrigeración y espacios con control térmico. Su estructura combina aislamiento, resistencia y una instalación práctica en un mismo sistema.",
+            text2: "Esta solución permite conservar mejor la temperatura interna, reducir pérdidas energéticas y lograr instalaciones más limpias, duraderas y profesionales.",
+            stats: [
+                {
+                    label: "Aislamiento",
+                    value: "alto desempeño"
+                },
+                {
+                    label: "Sistema",
+                    value: "modular y eficiente"
+                },
+                {
+                    label: "Espacios",
+                    value: "más higiénicos"
+                }
+            ]
+        },
+
+        benefits: {
+            kicker: "Ventajas",
+            title: "Beneficios clave de la solución",
+            items: [
+                {
+                    title: "Excelente aislamiento térmico",
+                    text: "Ayuda a conservar la temperatura interna y mejora la eficiencia del sistema de refrigeración."
+                },
+                {
+                    title: "Mayor eficiencia energética",
+                    text: "Reduce la fuga térmica y contribuye a disminuir el consumo energético de la operación."
+                },
+                {
+                    title: "Superficies higiénicas",
+                    text: "Favorece la limpieza y el mantenimiento en ambientes que requieren altos estándares sanitarios."
+                },
+                {
+                    title: "Instalación modular",
+                    text: "Permite desarrollar proyectos más ordenados, escalables y con mejor aprovechamiento del tiempo."
+                },
+                {
+                    title: "Durabilidad y resistencia",
+                    text: "Aporta una solución sólida para ambientes industriales y comerciales exigentes."
+                },
+                {
+                    title: "Mejor presentación del proyecto",
+                    text: "Genera espacios más profesionales, uniformes y funcionales para el negocio."
+                }
+            ]
+        },
+
+        applications: {
+            kicker: "Usos",
+            title: "Aplicaciones comunes",
+            items: [
+                "Cuartos fríos para alimentos",
+                "Cámaras de refrigeración",
+                "Cámaras de congelación",
+                "Procesadoras cárnicas",
+                "Industria láctea",
+                "Centros de distribución",
+                "Cocinas industriales",
+                "Proyectos farmacéuticos"
+            ]
+        },
+
+        process: {
+            kicker: "Proceso",
+            title: "Cómo desarrollamos un proyecto",
+            items: [
+                {
+                    step: "01",
+                    title: "Evaluamos la necesidad",
+                    text: "Analizamos el tipo de proyecto, uso del espacio y requerimientos generales."
+                },
+                {
+                    step: "02",
+                    title: "Definimos la solución",
+                    text: "Recomendamos una configuración adecuada según el nivel de exigencia térmica y operativa."
+                },
+                {
+                    step: "03",
+                    title: "Suministro del sistema",
+                    text: "Se prepara la solución con paneles y componentes pensados para el proyecto."
+                },
+                {
+                    step: "04",
+                    title: "Puesta en marcha del espacio",
+                    text: "El resultado es una instalación más eficiente, ordenada y lista para operar."
+                }
+            ]
+        },
+
+        comparison: {
+            kicker: "Comparativa",
+            title: "¿Por qué elegir paneles de poliuretano?",
+            headers: {
+                aspect: "Aspecto",
+                solution: "Panel de poliuretano",
+                other: "Otras soluciones"
+            },
+            rows: [
+                {
+                    aspect: "Aislamiento térmico",
+                    solution: "Alto desempeño",
+                    other: "Desempeño variable"
+                },
+                {
+                    aspect: "Eficiencia energética",
+                    solution: "Mayor eficiencia",
+                    other: "Menor control térmico"
+                },
+                {
+                    aspect: "Limpieza e higiene",
+                    solution: "Superficies más prácticas",
+                    other: "Mayor complejidad de mantenimiento"
+                },
+                {
+                    aspect: "Instalación",
+                    solution: "Sistema modular",
+                    other: "Procesos más lentos"
+                },
+                {
+                    aspect: "Durabilidad",
+                    solution: "Alta resistencia",
+                    other: "Depende del sistema utilizado"
+                },
+                {
+                    aspect: "Presentación final",
+                    solution: "Acabado profesional",
+                    other: "Resultado menos uniforme"
+                }
+            ]
+        },
+
+        faq: {
+            kicker: "FAQ",
+            title: "Preguntas frecuentes",
+            items: [
+                {
+                    q: "¿Para qué tipo de proyectos se recomienda esta solución?",
+                    a: "Es ideal para cuartos fríos, cámaras de refrigeración, congelación y espacios con control térmico en sectores comerciales e industriales."
+                },
+                {
+                    q: "¿Ayuda a reducir el consumo energético?",
+                    a: "Sí. Un buen aislamiento contribuye a disminuir pérdidas térmicas y mejorar la eficiencia del sistema de refrigeración."
+                },
+                {
+                    q: "¿Es una opción adecuada para la industria alimentaria?",
+                    a: "Sí. Es una solución muy utilizada en proyectos donde la higiene, la limpieza y el control térmico son prioritarios."
+                },
+                {
+                    q: "¿Se puede adaptar a diferentes tamaños de proyecto?",
+                    a: "Sí. Al tratarse de un sistema modular, puede ajustarse a distintos requerimientos y escalas de instalación."
+                }
+            ]
+        },
+
+        cta: {
+            kicker: "Siguiente paso",
+            title: "Hablemos de tu proyecto",
+            text: "Si necesitas una solución confiable para aislamiento térmico en cuartos fríos, podemos ayudarte a evaluar la opción adecuada para tu operación.",
+            button: "Contactar ahora"
+        }
     }
 };

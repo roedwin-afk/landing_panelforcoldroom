@@ -186,7 +186,195 @@ export const en = {
             message_placeholder: 'Tell us about your project...',
         },
         submit: 'Send Request →',
-    }
+    },
+    solutionPage: {
+        hero: {
+            eyebrow: "Specialized solution",
+            title: "High-performance polyurethane panels for cold rooms",
+            text: "A solution designed to optimize thermal insulation, improve operational efficiency, and provide a reliable system for industrial refrigeration projects.",
+            primaryCta: "Request a quote",
+            secondaryCta: "View applications",
+            imageAlt: "Polyurethane panels for cold room projects"
+        },
 
+        problems: {
+            kicker: "Common challenges",
+            title: "Problems this solution helps solve",
+            items: [
+                "Temperature loss and thermal fluctuations inside the cold room",
+                "High energy consumption caused by poor insulation",
+                "Condensation and moisture on critical surfaces",
+                "Difficulty maintaining hygienic and easy-to-clean spaces",
+                "Low-durability installations or poor structural performance",
+                "Projects that need a modular, efficient, and scalable solution"
+            ]
+        },
+
+        overview: {
+            kicker: "Overview",
+            title: "A thermal solution built for real operational demands",
+            text1: "Polyurethane panels are one of the most efficient options for building cold rooms, refrigeration chambers, and thermally controlled spaces. Their structure combines insulation, strength, and practical installation in one system.",
+            text2: "This solution helps preserve internal temperature, reduce energy losses, and achieve cleaner, more durable, and more professional installations.",
+            stats: [
+                {
+                    label: "Insulation",
+                    value: "high performance"
+                },
+                {
+                    label: "System",
+                    value: "modular and efficient"
+                },
+                {
+                    label: "Spaces",
+                    value: "more hygienic"
+                }
+            ]
+        },
+
+        benefits: {
+            kicker: "Benefits",
+            title: "Key solution benefits",
+            items: [
+                {
+                    title: "Excellent thermal insulation",
+                    text: "Helps preserve internal temperature and improves refrigeration system efficiency."
+                },
+                {
+                    title: "Higher energy efficiency",
+                    text: "Reduces thermal leakage and supports lower operating energy consumption."
+                },
+                {
+                    title: "Hygienic surfaces",
+                    text: "Supports cleaning and maintenance in environments with strict sanitary requirements."
+                },
+                {
+                    title: "Modular installation",
+                    text: "Allows more organized, scalable projects with better time efficiency."
+                },
+                {
+                    title: "Durability and strength",
+                    text: "Provides a solid solution for demanding commercial and industrial environments."
+                },
+                {
+                    title: "Better project presentation",
+                    text: "Creates cleaner, more professional, and more functional business spaces."
+                }
+            ]
+        },
+
+        applications: {
+            kicker: "Applications",
+            title: "Common applications",
+            items: [
+                "Food cold rooms",
+                "Refrigeration chambers",
+                "Freezer rooms",
+                "Meat processing facilities",
+                "Dairy industry applications",
+                "Distribution centers",
+                "Industrial kitchens",
+                "Pharmaceutical projects"
+            ]
+        },
+
+        process: {
+            kicker: "Process",
+            title: "How we develop a project",
+            items: [
+                {
+                    step: "01",
+                    title: "We assess the need",
+                    text: "We review the project type, space usage, and general requirements."
+                },
+                {
+                    step: "02",
+                    title: "We define the solution",
+                    text: "We recommend the right setup based on thermal and operational demands."
+                },
+                {
+                    step: "03",
+                    title: "System supply",
+                    text: "The solution is prepared with panels and components aligned to the project."
+                },
+                {
+                    step: "04",
+                    title: "Operational readiness",
+                    text: "The result is a more efficient, organized, and ready-to-use installation."
+                }
+            ]
+        },
+
+        comparison: {
+            kicker: "Comparison",
+            title: "Why choose polyurethane panels?",
+            headers: {
+                aspect: "Aspect",
+                solution: "Polyurethane panel",
+                other: "Other solutions"
+            },
+            rows: [
+                {
+                    aspect: "Thermal insulation",
+                    solution: "High performance",
+                    other: "Variable performance"
+                },
+                {
+                    aspect: "Energy efficiency",
+                    solution: "Higher efficiency",
+                    other: "Lower thermal control"
+                },
+                {
+                    aspect: "Cleaning and hygiene",
+                    solution: "More practical surfaces",
+                    other: "More complex maintenance"
+                },
+                {
+                    aspect: "Installation",
+                    solution: "Modular system",
+                    other: "Slower processes"
+                },
+                {
+                    aspect: "Durability",
+                    solution: "High resistance",
+                    other: "Depends on the chosen system"
+                },
+                {
+                    aspect: "Final appearance",
+                    solution: "Professional finish",
+                    other: "Less uniform result"
+                }
+            ]
+        },
+
+        faq: {
+            kicker: "FAQ",
+            title: "Frequently asked questions",
+            items: [
+                {
+                    q: "What types of projects is this solution recommended for?",
+                    a: "It is ideal for cold rooms, refrigeration chambers, freezer rooms, and thermally controlled spaces in industrial and commercial sectors."
+                },
+                {
+                    q: "Does it help reduce energy consumption?",
+                    a: "Yes. Strong insulation helps reduce thermal losses and improves refrigeration system efficiency."
+                },
+                {
+                    q: "Is it suitable for the food industry?",
+                    a: "Yes. It is widely used in projects where hygiene, cleanability, and thermal control are essential."
+                },
+                {
+                    q: "Can it adapt to different project sizes?",
+                    a: "Yes. As a modular system, it can be adjusted to different scales and installation needs."
+                }
+            ]
+        },
+
+        cta: {
+            kicker: "Next step",
+            title: "Let’s talk about your project",
+            text: "If you need a reliable thermal insulation solution for cold rooms, we can help you evaluate the right option for your operation.",
+            button: "Contact us now"
+        }
+    }
 
 };

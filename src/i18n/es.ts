@@ -198,12 +198,12 @@ export const es = {
             kicker: "Desafíos frecuentes",
             title: "Problemas que esta solución ayuda a resolver",
             items: [
-                "Pérdida de temperatura y variaciones térmicas dentro del cuarto frío",
-                "Consumo energético elevado por un aislamiento deficiente",
-                "Condensación y humedad en superficies críticas",
-                "Dificultad para mantener espacios higiénicos y fáciles de limpiar",
-                "Instalaciones poco duraderas o con bajo desempeño estructural",
-                "Proyectos que necesitan una solución modular, rápida y eficiente"
+                "Pérdida de temperatura y variaciones térmicas dentro del cuarto frío.",
+                "Consumo energético elevado por un aislamiento deficiente.",
+                "Condensación y humedad en superficies críticas.",
+                "Dificultad para mantener espacios higiénicos y fáciles de limpiar.",
+                "Instalaciones poco duraderas o con bajo desempeño estructural.",
+                "Proyectos que necesitan una solución modular, rápida y eficiente."
             ]
         },
 
@@ -260,17 +260,17 @@ export const es = {
         },
 
         applications: {
-            kicker: "Usos",
+            kicker: "Aplicaciones",
             title: "Aplicaciones comunes",
             items: [
-                "Cuartos fríos para alimentos",
-                "Cámaras de refrigeración",
-                "Cámaras de congelación",
-                "Procesadoras cárnicas",
-                "Industria láctea",
-                "Centros de distribución",
-                "Cocinas industriales",
-                "Proyectos farmacéuticos"
+                { icon: "cold", text: "Cuartos fríos para alimentos" },
+                { icon: "temp", text: "Cámaras de refrigeración" },
+                { icon: "freeze", text: "Cámaras de congelación" },
+                { icon: "meat", text: "Procesamiento de carne" },
+                { icon: "dairy", text: "Industria láctea" },
+                { icon: "distribution", text: "Centros de distribución" },
+                { icon: "kitchen", text: "Cocinas industriales" },
+                { icon: "pharma", text: "Proyectos farmacéuticos" }
             ]
         },
 

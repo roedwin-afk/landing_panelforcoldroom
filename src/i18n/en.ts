@@ -1,6 +1,3 @@
-import { email } from "astro:schema";
-import WhyChooseUs from "../components/WhyChooseUs.astro";
-
 export const en = {
     menu: {
         solution: 'Solution',
@@ -201,12 +198,12 @@ export const en = {
             kicker: "Common challenges",
             title: "Problems this solution helps solve",
             items: [
-                "Temperature loss and thermal fluctuations inside the cold room",
-                "High energy consumption caused by poor insulation",
-                "Condensation and moisture on critical surfaces",
-                "Difficulty maintaining hygienic and easy-to-clean spaces",
-                "Low-durability installations or poor structural performance",
-                "Projects that need a modular, efficient, and scalable solution"
+                "Temperature loss and thermal fluctuations inside the cold room.",
+                "High energy consumption caused by poor insulation.",
+                "Condensation and moisture on critical surfaces.",
+                "Difficulty maintaining hygienic and easy-to-clean spaces.",
+                "Low-durability installations or poor structural performance.",
+                "Projects that need a modular, efficient, and scalable solution."
             ]
         },
 
@@ -266,14 +263,14 @@ export const en = {
             kicker: "Applications",
             title: "Common applications",
             items: [
-                "Food cold rooms",
-                "Refrigeration chambers",
-                "Freezer rooms",
-                "Meat processing facilities",
-                "Dairy industry applications",
-                "Distribution centers",
-                "Industrial kitchens",
-                "Pharmaceutical projects"
+                { icon: "cold", text: "Food cold rooms" },
+                { icon: "temp", text: "Refrigeration chambers" },
+                { icon: "freeze", text: "Freezer rooms" },
+                { icon: "meat", text: "Meat processing facilities" },
+                { icon: "dairy", text: "Dairy industry applications" },
+                { icon: "distribution", text: "Distribution centers" },
+                { icon: "kitchen", text: "Industrial kitchens" },
+                { icon: "pharma", text: "Pharmaceutical projects" }
             ]
         },
 

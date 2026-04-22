@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://panelforcoldroom.com',
+  site: 'https://landing.mequipo.com',
   trailingSlash: 'always',
   build: {
     format: 'directory',
@@ -20,7 +20,7 @@ export default defineConfig({
         defaultLocale: 'en',
         locales: {
           en: 'en-US',
-          es: 'es-US', // español para hispanos en EE.UU.
+          es: 'es-ES',
         },
       },
     }),

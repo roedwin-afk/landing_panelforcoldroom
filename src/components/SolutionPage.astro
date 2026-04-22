@@ -5,10 +5,38 @@ import { getRelativeLocaleUrl } from "astro:i18n";
 import { en } from "../i18n/en";
 import { es } from "../i18n/es";
 
+import {
+  Snowflake,
+  Thermometer,
+  Beef,
+  Milk,
+  Package,
+  ChefHat,
+  Pill,
+} from "@lucide/astro";
+
+const iconos = {
+  cold: Snowflake,
+  temp: Thermometer,
+  freeze: Snowflake,
+  meat: Beef,
+  dairy: Milk,
+  distribution: Package,
+  kitchen: ChefHat,
+  pharma: Pill,
+} as const;
+
+type IconoAplicacion = keyof typeof iconos;
+type AplicacionItem = {
+  icon: IconoAplicacion;
+  text: string;
+};
+
 const locale = Astro.currentLocale ?? "en";
 const t = locale === "es" ? es : en;
 
 const data = t.solutionPage;
+const aplicaciones = data.applications.items as AplicacionItem[];
 ---
 
 <main class="solution-page">
@@ -21,7 +49,10 @@ const data = t.solutionPage;
         <p class="solution-hero__text">{data.hero.text}</p>
 
         <div class="solution-hero__actions">
-          <a href={getRelativeLocaleUrl(locale, "/contact/")} class="btn btn--primary">
+          <a
+            href={getRelativeLocaleUrl(locale, "/contact/")}
+            class="btn btn--primary"
+          >
             {data.hero.primaryCta}
           </a>
 
@@ -53,12 +84,14 @@ const data = t.solutionPage;
     </div>
 
     <div class="problems__grid">
-      {data.problems.items.map((item) => (
-        <article class="problem-card">
-          <span class="problem-card__icon">•</span>
-          <p>{item}</p>
-        </article>
-      ))}
+      {
+        data.problems.items.map((item) => (
+          <article class="problem-card">
+            <span class="problem-card__icon">•</span>
+            <p>{item}</p>
+          </article>
+        ))
+      }
     </div>
   </section>
 
@@ -72,12 +105,14 @@ const data = t.solutionPage;
       </div>
 
       <div class="overview__stats">
-        {data.overview.stats.map((item) => (
-          <div class="stat-card">
-            <strong>{item.label}</strong>
-            <span>{item.value}</span>
-          </div>
-        ))}
+        {
+          data.overview.stats.map((item) => (
+            <div class="stat-card">
+              <strong>{item.label}</strong>
+              <span>{item.value}</span>
+            </div>
+          ))
+        }
       </div>
     </div>
   </section>
@@ -89,15 +124,17 @@ const data = t.solutionPage;
     </div>
 
     <div class="benefits__grid">
-      {data.benefits.items.map((item) => (
-        <article class="benefit-card">
-          <div class="benefit-card__top">
-            <span class="benefit-card__check">✓</span>
-            <h3>{item.title}</h3>
-          </div>
-          <p>{item.text}</p>
-        </article>
-      ))}
+      {
+        data.benefits.items.map((item) => (
+          <article class="benefit-card">
+            <div class="benefit-card__top">
+              <span class="benefit-card__check">✓</span>
+              <h3>{item.title}</h3>
+            </div>
+            <p>{item.text}</p>
+          </article>
+        ))
+      }
     </div>
   </section>
 
@@ -108,12 +145,20 @@ const data = t.solutionPage;
     </div>
 
     <div class="applications__grid">
-      {data.applications.items.map((item) => (
-        <article class="application-card">
-          <span class="application-card__bullet"></span>
-          <p>{item}</p>
-        </article>
-      ))}
+      {
+        aplicaciones.map((item) => {
+          const Icono = iconos[item.icon];
+
+          return (
+            <article class="application-card">
+              <span class="application-card__icon">
+                <Icono size={22} stroke-width={2} />
+              </span>
+              <p>{item.text}</p>
+            </article>
+          );
+        })
+      }
     </div>
   </section>
 
@@ -124,13 +169,15 @@ const data = t.solutionPage;
     </div>
 
     <div class="process__grid">
-      {data.process.items.map((item) => (
-        <article class="process-card">
-          <span class="process-card__step">{item.step}</span>
-          <h3>{item.title}</h3>
-          <p>{item.text}</p>
-        </article>
-      ))}
+      {
+        data.process.items.map((item) => (
+          <article class="process-card">
+            <span class="process-card__step">{item.step}</span>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))
+      }
     </div>
   </section>
 
@@ -140,25 +187,45 @@ const data = t.solutionPage;
       <h2>{data.comparison.title}</h2>
     </div>
 
-    <div class="comparison__table-wrap">
-      <table class="comparison__table">
-        <thead>
-          <tr>
-            <th>{data.comparison.headers.aspect}</th>
-            <th>{data.comparison.headers.solution}</th>
-            <th>{data.comparison.headers.other}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.comparison.rows.map((row) => (
-            <tr>
-              <td>{row.aspect}</td>
-              <td>{row.solution}</td>
-              <td>{row.other}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div class="comparison__list">
+      {
+        data.comparison.rows.map((row) => (
+          <article class="comparison-card">
+            <div class="comparison-card__aspect">
+              <span class="comparison-card__label">
+                {data.comparison.headers.aspect}
+              </span>
+              <h3>{row.aspect}</h3>
+            </div>
+
+            <div class="comparison-card__columns">
+              <div class="comparison-card__col comparison-card__col--solution">
+                <span class="comparison-card__col-title">
+                  {data.comparison.headers.solution}
+                </span>
+                <p>
+                  <span class="comparison-card__icon comparison-card__icon--ok">
+                    ✓
+                  </span>
+                  {row.solution}
+                </p>
+              </div>
+
+              <div class="comparison-card__col comparison-card__col--other">
+                <span class="comparison-card__col-title">
+                  {data.comparison.headers.other}
+                </span>
+                <p>
+                  <span class="comparison-card__icon comparison-card__icon--other">
+                    —
+                  </span>
+                  {row.other}
+                </p>
+              </div>
+            </div>
+          </article>
+        ))
+      }
     </div>
   </section>
 
@@ -169,12 +236,14 @@ const data = t.solutionPage;
     </div>
 
     <div class="faq__list">
-      {data.faq.items.map((item) => (
-        <details class="faq-item">
-          <summary>{item.q}</summary>
-          <p>{item.a}</p>
-        </details>
-      ))}
+      {
+        data.faq.items.map((item) => (
+          <details class="faq-item">
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))
+      }
     </div>
   </section>
 
@@ -186,7 +255,10 @@ const data = t.solutionPage;
         <p>{data.cta.text}</p>
       </div>
 
-      <a href={getRelativeLocaleUrl(locale, "/contact/")} class="btn btn--light">
+      <a
+        href={getRelativeLocaleUrl(locale, "/contact/")}
+        class="btn btn--light"
+      >
         {data.cta.button}
       </a>
     </div>
@@ -200,7 +272,11 @@ const data = t.solutionPage;
 
   .solution-page {
     background:
-      radial-gradient(circle at top left, rgba(20, 91, 154, 0.08), transparent 28%),
+      radial-gradient(
+        circle at top left,
+        rgba(20, 91, 154, 0.08),
+        transparent 28%
+      ),
       linear-gradient(180deg, #ffffff 0%, #f7f9fc 100%);
   }
 
@@ -210,7 +286,7 @@ const data = t.solutionPage;
   .benefits,
   .applications,
   .process,
-  .comparison,
+  /* .comparison, */
   .faq,
   .solution-cta {
     padding: 5rem var(--container-padding);
@@ -285,7 +361,10 @@ const data = t.solutionPage;
     border-radius: 12px;
     text-decoration: none;
     font-weight: 700;
-    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease,
+      background 0.25s ease;
   }
 
   .btn:hover {
@@ -473,6 +552,23 @@ const data = t.solutionPage;
   .application-card {
     padding: 1.4rem 1.2rem;
     text-align: center;
+    transition: all 0.25s ease;
+  }
+
+  .application-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .application-card__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    margin-bottom: 0.9rem;
+    border-radius: 14px;
+    background: rgba(20, 91, 154, 0.08);
+    color: var(--color-primary);
   }
 
   .application-card__bullet {
@@ -500,35 +596,125 @@ const data = t.solutionPage;
     margin-bottom: 0.9rem;
   }
 
-  .comparison__table-wrap {
-    overflow-x: auto;
+  .comparison {
+    position: relative;
+  }
+
+  .comparison__list {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .comparison-card {
     background: white;
     border: 1px solid rgba(20, 91, 154, 0.08);
     border-radius: 20px;
+    padding: 1.4rem;
     box-shadow: 0 12px 30px rgba(10, 32, 58, 0.04);
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 1.25rem;
+    align-items: stretch;
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease;
   }
 
-  .comparison__table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 760px;
+  .comparison-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 36px rgba(10, 32, 58, 0.08);
   }
 
-  .comparison__table th,
-  .comparison__table td {
-    padding: 1rem 1.1rem;
-    text-align: center;
-    border-bottom: 1px solid rgba(20, 91, 154, 0.08);
+  .comparison-card__aspect {
+    padding: 1rem;
+    border-radius: 16px;
+    background: linear-gradient(180deg, #f7fbff 0%, #eef5fb 100%);
+    border: 1px solid rgba(20, 91, 154, 0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
-  .comparison__table thead th {
-    background: rgba(20, 91, 154, 0.05);
+  .comparison-card__label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .comparison-card__aspect h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    line-height: 1.4;
     color: var(--color-primary);
-    font-size: 0.95rem;
   }
 
-  .comparison__table tbody td {
-    color: #586476;
+  .comparison-card__columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .comparison-card__col {
+    border-radius: 16px;
+    padding: 1rem 1.1rem;
+    min-height: 100%;
+  }
+
+  .comparison-card__col--solution {
+    background: rgba(0, 168, 107, 0.06);
+    border: 1px solid rgba(0, 168, 107, 0.12);
+  }
+
+  .comparison-card__col--other {
+    background: rgba(20, 91, 154, 0.04);
+    border: 1px solid rgba(20, 91, 154, 0.08);
+  }
+
+  .comparison-card__col-title {
+    display: inline-block;
+    margin-bottom: 0.75rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .comparison-card__col p {
+    margin: 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    color: #596474;
+    line-height: 1.7;
+  }
+
+  .comparison-card__icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-weight: 800;
+    font-size: 0.9rem;
+    margin-top: 0.1rem;
+  }
+
+  .comparison-card__icon--ok {
+    background: rgba(0, 168, 107, 0.14);
+    color: var(--color-accent);
+  }
+
+  .comparison-card__icon--other {
+    background: rgba(20, 91, 154, 0.08);
+    color: var(--color-primary);
   }
 
   .faq__list {
@@ -605,6 +791,15 @@ const data = t.solutionPage;
 
     .solution-hero__title {
       max-width: 100%;
+    }
+  }
+  @media (max-width: 900px) {
+    .comparison-card {
+      grid-template-columns: 1fr;
+    }
+
+    .comparison-card__columns {
+      grid-template-columns: 1fr;
     }
   }
 

@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import logo from "../assets/logo.svg";
 import Menu from "./Menu.astro";
 import { getRelativeLocaleUrl } from "astro:i18n";
+
 const locale = Astro.currentLocale ?? "en";
 const currentPath = Astro.url.pathname.replace(/^\/(en|es)/, '') || '/';
 ---
@@ -26,14 +27,26 @@ const currentPath = Astro.url.pathname.replace(/^\/(en|es)/, '') || '/';
 
     <nav class="header__nav" id="menu">
       <Menu />
+      
+      
       <div class="lang-switcher">
-        
-          <a href={getRelativeLocaleUrl("en", currentPath)}
-          class={`lang-btn ${locale === "en" ? "active" : ""}`}>EN</a>
+        <a href={getRelativeLocaleUrl("en", currentPath)}
+        class={`lang-btn ${locale === "en" ? "active" : ""}`}>EN</a>
         <div class="lang-divider"></div>
-        
-          <a href={getRelativeLocaleUrl("es", currentPath)}
-          class={`lang-btn ${locale === "es" ? "active" : ""}`}>ES</a>
+        <a href={getRelativeLocaleUrl("es", currentPath)}
+        class={`lang-btn ${locale === "es" ? "active" : ""}`}>ES</a>
+      </div>
+      <!-- Dropdown de Landings -->
+      <div class="landings-dropdown">
+        <button class="landings-dropdown__trigger" id="landings-trigger" type="button">
+          <span id="landings-label">Landings</span>
+          <svg width="12" height="8" viewBox="0 0 12 8" fill="currentColor">
+            <path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="2" fill="none"/>
+          </svg>
+        </button>
+        <ul class="landings-dropdown__menu" id="landings-menu">
+          <li class="loading">Cargando...</li>
+        </ul>
       </div>
     </nav>
   </div>
@@ -88,6 +101,90 @@ const currentPath = Astro.url.pathname.replace(/^\/(en|es)/, '') || '/';
     border: none;
     color: white;
     cursor: pointer;
+  }
+
+  /* Dropdown de Landings - Desktop */
+  .landings-dropdown {
+    position: relative;
+  }
+
+  .landings-dropdown__trigger {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .landings-dropdown__trigger:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+
+  .landings-dropdown__trigger svg {
+    transition: transform 0.2s;
+  }
+
+  .landings-dropdown__trigger.active svg {
+    transform: rotate(180deg);
+  }
+
+  .landings-dropdown__menu {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    min-width: 240px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    list-style: none;
+    padding: 0.5rem 0;
+    margin: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.2s;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+
+  .landings-dropdown__menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .landings-dropdown__menu li {
+    margin: 0;
+  }
+
+  .landings-dropdown__menu li.loading {
+    padding: 0.75rem 1.25rem;
+    color: #999;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .landings-dropdown__menu a {
+    display: block;
+    padding: 0.75rem 1.25rem;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.15s;
+  }
+
+  .landings-dropdown__menu a:hover {
+    background: rgba(232, 160, 32, 0.1);
+    color: var(--color-accent);
   }
 
   .lang-switcher {
@@ -163,14 +260,60 @@ const currentPath = Astro.url.pathname.replace(/^\/(en|es)/, '') || '/';
       display: flex;
     }
 
+    /* Dropdown mobile - ajustado */
+    .landings-dropdown {
+      width: 100%;
+    }
+
+    .landings-dropdown__trigger {
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .landings-dropdown__menu {
+      position: static;
+      width: 100%;
+      box-shadow: none;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 6px;
+      margin-top: 0.5rem;
+      max-height: 300px;
+      padding: 0;
+      /* Cambio importante: no ocultarlo por defecto en mobile */
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      display: none;
+    }
+
+    .landings-dropdown__menu.active {
+      display: block;
+    }
+
+    .landings-dropdown__menu li.loading {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .landings-dropdown__menu a {
+      color: white;
+      padding: 0.875rem 1.25rem;
+    }
+
+    .landings-dropdown__menu a:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: var(--color-accent);
+    }
+
     .lang-switcher {
-      flex-direction: row;
+      width: 100%;
+      justify-content: center;
     }
   }
 </style>
 
-<script>
+<script define:vars={{ locale }}>
   document.addEventListener("DOMContentLoaded", () => {
+    // Menu toggle existente
     const toggle = document.getElementById("menu-toggle");
     const menu = document.getElementById("menu");
 
@@ -178,10 +321,75 @@ const currentPath = Astro.url.pathname.replace(/^\/(en|es)/, '') || '/';
       toggle.addEventListener("click", () => {
         menu.classList.toggle("active");
       });
-      menu.querySelectorAll("a").forEach((link) => {
+      
+      // Cerrar menu al hacer click en links del Menu component
+      menu.querySelectorAll("a:not(.landings-dropdown__menu a)").forEach((link) => {
         link.addEventListener("click", () => {
           menu.classList.remove("active");
         });
+      });
+    }
+
+    // Cargar landings dinámicamente
+    const landingsTrigger = document.getElementById("landings-trigger");
+    const landingsMenu = document.getElementById("landings-menu");
+
+    // Función para cargar landings desde PHP
+    async function loadLandings() {
+      try {
+        const response = await fetch('/get-landings.php');
+        const data = await response.json();
+
+        if (data.success && data.landings.length > 0) {
+          landingsMenu.innerHTML = '';
+          
+          data.landings.forEach(landing => {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.href = landing.url;
+            a.textContent = landing.nombre[locale]; //|| landing.nombre.es;
+            li.appendChild(a);
+            landingsMenu.appendChild(li);
+          });
+
+          // Agregar listeners a los nuevos links
+          landingsMenu.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", () => {
+              landingsTrigger?.classList.remove("active");
+              landingsMenu?.classList.remove("active");
+              // Cerrar también el menu mobile
+              menu?.classList.remove("active");
+            });
+          });
+        } else {
+          landingsMenu.innerHTML = '<li class="loading">No hay productos disponibles</li>';
+        }
+      } catch (error) {
+        console.error('Error cargando landings:', error);
+        landingsMenu.innerHTML = '<li class="loading">Error al cargar</li>';
+      }
+    }
+
+    // Cargar al iniciar
+    loadLandings();
+
+    // Dropdown toggle
+    if (landingsTrigger && landingsMenu) {
+      landingsTrigger.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        landingsTrigger.classList.toggle("active");
+        landingsMenu.classList.toggle("active");
+      });
+
+      // Cerrar al hacer click fuera (solo en desktop)
+      document.addEventListener("click", (e) => {
+        if (window.innerWidth > 768) {
+          if (!landingsTrigger.contains(e.target) && !landingsMenu.contains(e.target)) {
+            landingsTrigger.classList.remove("active");
+            landingsMenu.classList.remove("active");
+          }
+        }
       });
     }
   });
